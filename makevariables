@@ -1,0 +1,8 @@
+cc       = clang++
+bin      = raycast.bin
+
+src      = main.cpp
+obj      = $(src:.cpp=.o)
+test_src = 
+test_bin = 
+test_obj = $(test:.cpp=.o)
