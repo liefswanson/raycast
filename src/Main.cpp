@@ -1,6 +1,6 @@
 #include "main.hpp"
 
 int main(int argc, char *argv[]) {
-    std::cout << "hello world." << std::endl; 
+    std::cout << "rendering." << std::endl; 
     return 0;
 }
