@@ -1,7 +1,7 @@
 include ../../makevariables 
 
 %.bin:
-	cd ../obj && $(cc) $(obj) -o ../bin/$@
+	cd ../obj && $(cc) $(std) $(obj) -o ../bin/$@
 	./$@
 
 clean:

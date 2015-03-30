@@ -1,7 +1,7 @@
 include ../../makevariables
 
 %.o:
-	cd ../ && $(cc) -c $*.cpp -o obj/$@ 
+	cd ../ && $(cc) $(std) -c $*.cpp -o obj/$@ 
 
 clean:
 	rm -f *.o
