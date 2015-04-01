@@ -16,6 +16,8 @@ public:
 	uint32_t height;
 	uint32_t width;
 	uint32_t dpi;
-
-	std::vector<uint8_t> gbr24();
+	
+	void normalize();
+	
+	std::vector<uint8_t> bgr24() const;
 };

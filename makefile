@@ -1,4 +1,4 @@
-include makevariables
+include vars.make
 
 all:
 	$(MAKE) -C src/obj $(obj)

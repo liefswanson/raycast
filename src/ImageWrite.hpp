@@ -3,6 +3,5 @@
 #include <string>
 #include <array>
 
-void writeBMP(screen s);
+void writeBMP(const std::string& path, const screen& s);
 
-std::array<uint8_t, 4> uint32ToBytes();

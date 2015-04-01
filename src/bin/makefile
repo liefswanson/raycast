@@ -1,4 +1,4 @@
-include ../../makevariables 
+include ../../vars.make 
 
 $(bin): $(addprefix ../obj/, $(obj))
 	cd ../obj && $(cc) $(std) $(obj) -o ../bin/$@

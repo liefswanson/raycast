@@ -1,9 +1,0 @@
-cc       = clang++
-bin      = raycast.bin
-std      = --std=c++14
-
-src      = Main.cpp
-obj      = $(src:.cpp=.o)
-test_src = 
-test_bin = 
-test_obj = $(test:.cpp=.o)

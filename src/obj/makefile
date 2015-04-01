@@ -1,4 +1,4 @@
-include ../../makevariables
+include ../../vars.make
 
 %.o: ../%.cpp ../%.hpp
 	cd ../ && $(cc) $(std) -c $*.cpp -o obj/$@ 

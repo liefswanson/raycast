@@ -16,7 +16,7 @@ public:
 	uint8_t g;
 	uint8_t b;
 
-	glpixel conv();
+	glpixel conv() const;
 };
 
 class glpixel {
@@ -30,5 +30,5 @@ public:
 	GLfloat g;
 	GLfloat b;
 
-	pixel conv();
+	pixel conv() const;
 };
