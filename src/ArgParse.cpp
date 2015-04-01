@@ -23,7 +23,8 @@ ArgParse::getValue(const std::string& arg) {
 	auto ret = false;
 	for(auto &current : args) {
 		if (ret) {
-			return current;
+			// make a new string because we do not want to pass by reference
+			return std::string(current);
 		}
 		if (current == arg) {
 			ret = true;

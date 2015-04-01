@@ -1,34 +1,15 @@
 include makevariables
 
-all: $(bin) $(test_bin)
-	date
+all:
+	$(MAKE) -C src/obj $(obj)
+	$(MAKE) -C src/bin $(bin)
 
-bin: $(bin)
-	date
+bin:
+	$(MAKE) -C src/obj $(obj)
+	$(MAKE) -C src/bin $(bin)
 
-test: $(test_bin)
-	date
-
-run: all
-	src/bin/$(bin)
-
-$(bin): $(obj)
-	$(MAKE) -C src/bin $@
-
-$(obj): $(src)
-	$(MAKE) -C src/obj $@
-
-$(src):
-	$(MAKE) -C src $@
-
-$(test_bin): $(test_obj)
-	$(MAKE) -C test/bin $@
-
-$(test_obj): $(test_src)
-	$(MAKE) -C test/obj $@
-
-$(test_src):
-	$(MAKE) -C test $@
+run: bin
+	src/bin/$(bin) out/$(pwd)
 
 clean:
 	$(MAKE) -C src/bin $@

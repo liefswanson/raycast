@@ -1,6 +1,6 @@
 include ../../makevariables
 
-%.o:
+%.o: ../%.cpp ../%.hpp
 	cd ../ && $(cc) $(std) -c $*.cpp -o obj/$@ 
 
 clean:
