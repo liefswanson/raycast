@@ -8,11 +8,16 @@ screen s(640, 480, 72);
 int main(int argc, char *argv[]) {
     std::cout << "rendering." << std::endl;
 
-	for (auto &px : s.pixels) {
-		px.g = 1.0f;
+	for(uint32_t x = 0; x < s.width; x++) {
+		for(uint32_t y = 0; y < s.height; y++) {
+			
+		}
 	}
+
 	
-	writeBMP("derp.bmp", s);
+	writeBMP("out/derp.bmp",
+			 s.width, s.height, s.dpi,
+			 s.bgr24(), 24);
 	
     return 0;
 }

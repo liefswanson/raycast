@@ -16,7 +16,8 @@ public:
 	uint32_t height;
 	uint32_t width;
 	uint32_t dpi;
-	
+
+	glpixel& at(uint32_t x, uint32_t y);
 	void normalize();
 	
 	std::vector<uint8_t> bgr24() const;

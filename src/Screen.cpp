@@ -7,6 +7,11 @@ screen::screen(uint32_t width, uint32_t height, uint32_t dpi){
 	this->pixels.resize(width*height, glpixel(0.f,0.f,0.f));
 }
 
+glpixel&
+screen::at(uint32_t x, uint32_t y) {
+	return this->pixels[y*width +x];
+}
+
 screen::~screen(){}
 
 std::vector<uint8_t> screen::bgr24() const{
