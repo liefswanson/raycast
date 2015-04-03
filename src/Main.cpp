@@ -16,7 +16,7 @@ int main(int argc, char *argv[]) {
 			return 1;
 		}
 	} else {
-		std::cout << Term::Cyan << "Using default the path " << Term::Yellow << "\"" << path << "\" " << Term::Reset << std::endl;
+		std::cout << Term::Cyan << "Using the default path " << Term::Yellow << "\"" << path << "\" " << Term::Reset << std::endl;
 	}
 	
     std::cout << Term::Cyan << "Rendering..." << Term::Reset << std::endl;
