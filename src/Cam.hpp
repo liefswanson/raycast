@@ -1,14 +1,14 @@
 #include "Vec.hpp"
 
 
-class cam {
+class Cam {
 public:
-	vec position;
-	vec direction;
-	vec up;
-	const static vec worldUp;
+	Vec position;
+	Vec direction;
+	Vec up;
+	const static Vec worldUp;
 
-	cam(vec position, vec direction, vec up = cam::worldUp);
-	cam(vec direction = vec(0, 0, 1));
-	~cam();
+	Cam(Vec position, Vec direction, Vec up = Cam::worldUp);
+	Cam(Vec direction = Vec(0, 0, 1));
+	~Cam();
 };

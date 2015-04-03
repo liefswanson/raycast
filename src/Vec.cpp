@@ -1,20 +1,20 @@
 #include "Vec.hpp"
 
-vec::vec(double x, double y, double z){
+Vec::Vec(double x, double y, double z){
 	this->x = x;
 	this->y = y;
 	this->z = z;
 }
 
-vec::vec(double val) : vec(val, val, val){}
+Vec::Vec(double val) : Vec(val, val, val){}
 
-vec::vec() : vec(0, 0, 0){}
+Vec::Vec() : Vec(0, 0, 0){}
 
-vec::~vec(){}
+Vec::~Vec(){}
 
 
 double
-vec::magnitude() const{
+Vec::magnitude() const{
 	return sqrt(x*x + y*y + z*z);
 }
 
@@ -24,81 +24,81 @@ vec::magnitude() const{
 // friends
 
 
-vec
-normalize(const vec& v){
+Vec
+normalize(const Vec& v){
 	double s = 1/v.magnitude();
 	return s * v;
 }
 
-vec
-negative(const vec& v) {
-	return vec(-v.x, -v.y, -v.z);
+Vec
+negative(const Vec& v) {
+	return Vec(-v.x, -v.y, -v.z);
 }
 
-vec
-operator-(const vec& v){
+Vec
+operator-(const Vec& v){
 	return negative(v);
 }
 
-vec
-scale(const vec& v, const double& scalar) {
-	return vec (v.x * scalar,
+Vec
+scale(const Vec& v, const double& scalar) {
+	return Vec (v.x * scalar,
 				v.y * scalar,
 				v.z * scalar);
 }
 
-vec
-operator*(const vec& v, const double& scalar){
+Vec
+operator*(const Vec& v, const double& scalar){
 	return scale(v, scalar);
 }
 
-vec
-operator*(const double& scalar, const vec& v){
+Vec
+operator*(const double& scalar, const Vec& v){
 	return scale(v, scalar);
 }
 
 double 
-dot(const vec& left, const vec& right){
+dot(const Vec& left, const Vec& right){
 	return left.x * right.x
 		+  left.y * right.y
 		+  left.z * right.z;
 }
 
 double
-operator*(const vec& left, const vec& right){
+operator*(const Vec& left, const Vec& right){
 	return dot(left, right);
 }
 
-vec
-cross(const vec& left, const vec& right) {
-	return vec(left.y*right.z - left.z*right.y,
+Vec
+cross(const Vec& left, const Vec& right) {
+	return Vec(left.y*right.z - left.z*right.y,
 			   left.x*right.z - left.z*right.x,
 			   left.x*right.y - left.y*right.x);
 }
 
-vec
-operator^(const vec& left, const vec& right){
+Vec
+operator^(const Vec& left, const Vec& right){
 	return cross(left, right);
 }
 
-vec
-add (const vec& left, const vec& right) {
-	return vec(left.x + right.x,
+Vec
+add (const Vec& left, const Vec& right) {
+	return Vec(left.x + right.x,
 			   left.y + right.y,
 			   left.z + right.z);
 }
 
-vec
-sub(const vec& left, const vec& right) {
+Vec
+sub(const Vec& left, const Vec& right) {
 	return add(left, -right);
 }
 
-vec
-operator+(const vec& left, const vec& right) {
+Vec
+operator+(const Vec& left, const Vec& right) {
 	return add(left, right);
 }
 
-vec
-operator-(const vec& left, const vec& right) {
+Vec
+operator-(const Vec& left, const Vec& right) {
 	return add(left, -right);
 }

@@ -1,6 +1,6 @@
 #include "ArgParse.hpp"
 
-argParse::argParse(int argc, char* argv[]) {
+ArgParse::ArgParse(int argc, char* argv[]) {
 	args = std::vector<std::string>(argc);
 
 	for(int i = 0; i < argc; ++i) {
@@ -8,10 +8,10 @@ argParse::argParse(int argc, char* argv[]) {
 	}
 }
 
-argParse::~argParse(){}
+ArgParse::~ArgParse(){}
 
 bool
-argParse::isSet(const std::string& arg) {
+ArgParse::isSet(const std::string& arg) {
 	for(auto &current : args) {
 		if (current == arg) {
 			return true;
@@ -21,7 +21,7 @@ argParse::isSet(const std::string& arg) {
 }
 
 std::string
-argParse::getValue(const std::string& arg) {
+ArgParse::getValue(const std::string& arg) {
 	auto ret = false;
 	for(auto &current : args) {
 		if (ret) {

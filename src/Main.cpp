@@ -5,9 +5,9 @@ std::string path = "out/output.bmp";
 
 
 int main(int argc, char *argv[]) {
-	screen s(640, 480, 72);
-	argParse parser(argc, argv);
-	cam c(vec(0, 2, -2));
+	Screen screen(640, 480, 72);
+	ArgParse parser(argc, argv);
+	Cam cam(Vec(0, 2, -2));
 	
 	if (parser.isSet("-p")) {
 		path = parser.getValue("-p");
@@ -22,18 +22,18 @@ int main(int argc, char *argv[]) {
     std::cout << Term::Cyan << "Rendering..." << Term::Reset << std::endl;
 
 
-	vec x(1, 0, 0);
-	vec y(0, 1, 0);
-	vec z(0, 0, 1);
+	Vec x(1, 0, 0);
+	Vec y(0, 1, 0);
+	Vec z(0, 0, 1);
 
-	vec lookAt(0, 0, 0);
-	vec diff = c.position - lookAt;
+	Vec lookAt(0, 0, 0);
+	Vec diff = cam.position - lookAt;
 
-	c.direction = normalize(-diff);
-	c.up = cam::worldUp;
+	cam.direction = normalize(-diff);
+	cam.up = Cam::worldUp;
 	
-	for(uint32_t x = 0; x < s.width; x++) {
-		for(uint32_t y = 0; y < s.height; y++) {
+	for(uint32_t x = 0; x < screen.width; x++) {
+		for(uint32_t y = 0; y < screen.height; y++) {
 			
 		}
 	}
@@ -43,8 +43,8 @@ int main(int argc, char *argv[]) {
 	// alternatively check the path before doing the render
 	try {
 		writeBMP(path,
-	 		 s.width, s.height, s.dpi,
-	 		 s.bgr24(), 24);
+				 screen.width, screen.height, screen.dpi,
+				 screen.bgr24(), 24);
 	} catch (std::exception e) {
 		std::cout << Term::Red <<  "There was a problem using the path " << Term::Yellow << "\""<< path << "\"" << Term::Red << " to save the file; are you sure the directory exists?" << Term::Reset << std::endl;
 	}

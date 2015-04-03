@@ -2,36 +2,36 @@
 
 #include <cmath>
 
-class vec{
+class Vec{
 public:
 	double x;
 	double y;
 	double z;
 
-	vec(double x, double y, double z);
-	vec(double v);
-	vec();
-	~vec();
+	Vec(double x, double y, double z);
+	Vec(double v);
+	Vec();
+	~Vec();
 
 	double magnitude() const;
 
-	friend vec normalize(const vec& v);
+	friend Vec normalize(const Vec& v);
 
-	friend vec negative (const vec& v);
-	friend vec operator-(const vec& v);
+	friend Vec negative (const Vec& v);
+	friend Vec operator-(const Vec& v);
 	
-	friend vec scale    (const vec& v, const double& scalar);
-	friend vec operator*(const vec& v, const double& scalar);
-	friend vec operator*(const double scalar, const vec& v);
+	friend Vec scale    (const Vec& v, const double& scalar);
+	friend Vec operator*(const Vec& v, const double& scalar);
+	friend Vec operator*(const double scalar, const Vec& v);
 
-	friend double dot      (const vec& left, const vec&right);
-	friend double operator*(const vec& left, const vec& right);
+	friend double dot      (const Vec& left, const Vec&right);
+	friend double operator*(const Vec& left, const Vec& right);
 
-	friend vec cross       (const vec& left, const vec& right); 
-	friend vec operator^   (const vec& left, const vec& right);
+	friend Vec cross       (const Vec& left, const Vec& right); 
+	friend Vec operator^   (const Vec& left, const Vec& right);
 
-	friend vec add         (const vec& left, const vec& right);
-	friend vec sub         (const vec& left, const vec& right);
-	friend vec operator+   (const vec& left, const vec& right);
-	friend vec operator-   (const vec& left, const vec& right);
+	friend Vec add         (const Vec& left, const Vec& right);
+	friend Vec sub         (const Vec& left, const Vec& right);
+	friend Vec operator+   (const Vec& left, const Vec& right);
+	friend Vec operator-   (const Vec& left, const Vec& right);
 };

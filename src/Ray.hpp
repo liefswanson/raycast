@@ -1,12 +1,12 @@
 #pragma once
 #include "Vec.hpp"
 
-class ray{
+class Ray{
 public:
-	vec origin;
-	vec destination;
+	Vec origin;
+	Vec destination;
 	
-	ray(vec origin, vec destination);
-	ray(vec destination);
-	~ray();
+	Ray(Vec origin, Vec destination);
+	Ray(Vec destination);
+	~Ray();
 };

@@ -1,13 +1,13 @@
 #include "Ray.hpp"
 
-ray::ray(vec origin, vec destination) {
+Ray::Ray(Vec origin, Vec destination) {
 	this->origin = origin;
 	this->destination = destination;
 }
 
-ray::ray(vec destination) {
-	this->origin = vec();
+Ray::Ray(Vec destination) {
+	this->origin = Vec();
 	this->destination = destination;
 }
 
-ray::~ray() {}
+Ray::~Ray() {}
