@@ -1,5 +1,5 @@
 #include "Main.hpp"
-
+#include <unistd.h>
 
 std::string path = "out/output.bmp";
 
@@ -19,7 +19,7 @@ int main(int argc, char *argv[]) {
 		std::cout << Term::Cyan << "Using the default path " << Term::Yellow << "\"" << path << "\" " << Term::Reset << std::endl;
 	}
 	
-    std::cout << Term::Cyan << "Rendering..." << Term::Reset << std::endl;
+    std::cout << Term::Cyan << "Rendering... ";
 
 
 	Vec x(1, 0, 0);
@@ -31,10 +31,21 @@ int main(int argc, char *argv[]) {
 
 	cam.direction = normalize(-diff);
 	cam.up = Cam::worldUp;
+
+	std::cout << Term::Green;
+	for (int i = 0; i < 10; i++) {
+		std::cout << i;
+		usleep(100);
+		if (i != 10 - 1){
+			std::cout << "\b \b";
+		}
+	}
+	
+	std::cout << Term::Reset << std::endl;
 	
 	for(uint32_t x = 0; x < screen.width; x++) {
 		for(uint32_t y = 0; y < screen.height; y++) {
-			
+
 		}
 	}
 

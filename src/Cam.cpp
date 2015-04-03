@@ -1,17 +1,17 @@
 #include "Cam.hpp"
 
-const vec cam::worldUp = vec(0, 1, 0);
+const Vec Cam::worldUp = Vec(0, 1, 0);
 
-cam::cam(vec position, vec direction, vec up){
+Cam::Cam(Vec position, Vec direction, Vec up){
 	this->position  = position;
 	this->direction = direction;
 	this->up        = up;
 }
 
-cam::cam(vec direction) {
-	this->position  = vec();
+Cam::Cam(Vec direction) {
+	this->position  = Vec();
 	this->direction = direction;
 	this->up        = worldUp;
 }
 
-cam::~cam() {}
+Cam::~Cam() {}

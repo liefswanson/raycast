@@ -53,7 +53,7 @@ operator*(const Vec& v, const double& scalar){
 }
 
 Vec
-operator*(const double& scalar, const Vec& v){
+operator*(double scalar, const Vec& v){
 	return scale(v, scalar);
 }
 
