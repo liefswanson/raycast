@@ -1,36 +1,36 @@
 #include "Pixel.hpp"
 
-const GLfloat pixel::toFloat = 1.f/255.f;
-const GLfloat glpixel::toInt = 255.f;
+const double Pixel::toDouble = 1.0/255.0;
+const double FPixel::toInt = 255.0;
 
-pixel::pixel(uint8_t r, uint8_t g, uint8_t b){
+Pixel::Pixel(uint8_t r, uint8_t g, uint8_t b){
 	this->r = r;
 	this->g = g;
 	this->b = b;
 }
 
-pixel::~pixel(){}
+Pixel::~Pixel(){}
 
-pixel
-glpixel::conv() const{
+Pixel
+FPixel::conv() const{
 	auto _r = (uint8_t) (r*toInt);
 	auto _g = (uint8_t) (g*toInt);
 	auto _b = (uint8_t) (b*toInt);
-	return pixel(_r, _g, _b);
+	return Pixel(_r, _g, _b);
 }
 
-glpixel::glpixel(GLfloat r, GLfloat g, GLfloat b){
+FPixel::FPixel(double r, double g, double b){
 	this->r = r;
 	this->g = g;
 	this->b = b;
 }
 
-glpixel::~glpixel(){}
+FPixel::~FPixel(){}
 
-glpixel
-pixel::conv() const{
-	auto _r = (GLfloat) (r*toFloat);
-	auto _g = (GLfloat) (g*toFloat);
-	auto _b = (GLfloat) (b*toFloat);
-	return glpixel(_r, _g, _b);
+FPixel
+Pixel::conv() const{
+	auto _r = (double) (r*toDouble);
+	auto _g = (double) (g*toDouble);
+	auto _b = (double) (b*toDouble);
+	return FPixel(_r, _g, _b);
 }

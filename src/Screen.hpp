@@ -1,23 +1,26 @@
 #pragma once
 
 #include <vector>
-
+#include <algorithm>
 #include <stdint.h>
 
 #include "Pixel.hpp"
 
-class screen {
+class Screen {
+private:
+	double normalFactor();
+	
 public:
 
-	screen(uint32_t height, uint32_t width, uint32_t dpi);
-	~screen();
+	Screen(uint32_t height, uint32_t width, uint32_t dpi);
+	~Screen();
 	
-	std::vector<glpixel> pixels;
+	std::vector<FPixel> pixels;
 	uint32_t height;
 	uint32_t width;
 	uint32_t dpi;
 
-	glpixel& at(uint32_t x, uint32_t y);
+	FPixel& at(uint32_t x, uint32_t y);
 	void normalize();
 	
 	std::vector<uint8_t> bgr24() const;

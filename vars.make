@@ -1,7 +1,7 @@
 cc       = clang++
 std      = --std=c++14
 
-src      = Main.cpp ImageWrite.cpp Screen.cpp Pixel.cpp
+src      = Main.cpp ImageWrite.cpp Screen.cpp Pixel.cpp ArgParse.cpp TermColor.cpp
 obj      = $(src:.cpp=.o)
 bin      = raycast.bin
 

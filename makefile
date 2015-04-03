@@ -9,7 +9,10 @@ bin:
 	$(MAKE) -C src/bin $(bin)
 
 run: bin
-	src/bin/$(bin) out/$(pwd)
+	src/bin/$(bin)
+
+run-save:
+	src/bin/$(bin) -p out/$(shell date +%s).bmp
 
 clean:
 	$(MAKE) -C src/bin $@

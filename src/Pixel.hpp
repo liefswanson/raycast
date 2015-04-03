@@ -1,34 +1,33 @@
 #pragma once
 
 #include <stdint.h>
-#include <GL/glew.h>
 
-class glpixel;
+class FPixel;
 
-class pixel {
+class Pixel {
 private:
-	static const GLfloat toFloat;
-	
+	static const double toDouble;
+
 public:
-	pixel(uint8_t r, uint8_t g, uint8_t b);
-	~pixel();
+	Pixel(uint8_t r, uint8_t g, uint8_t b);
+	~Pixel();
 	uint8_t r;
 	uint8_t g;
 	uint8_t b;
 
-	glpixel conv() const;
+	FPixel conv() const;
 };
 
-class glpixel {
+class FPixel {
 private:
-	static const GLfloat toInt;
+	static const double toInt;
 
 public:
-	glpixel(GLfloat r, GLfloat g, GLfloat b);
-	~glpixel();
-	GLfloat r;
-	GLfloat g;
-	GLfloat b;
+	FPixel(double r, double g, double b);
+	~FPixel();
+	double r;
+	double g;
+	double b;
 
-	pixel conv() const;
+	Pixel conv() const;
 };

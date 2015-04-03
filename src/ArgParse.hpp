@@ -2,10 +2,10 @@
 #include <vector>
 #include <string>
 
-class ArgParse {
+class argParse {
 public:
-	ArgParse (int argc, char* argv[]);
-	~ArgParse();
+	argParse (int argc, char* argv[]);
+	~argParse();
 
 	std::string getValue(const std::string& arg);
 	bool        isSet   (const std::string& arg);

@@ -1,6 +1,6 @@
 #include "ArgParse.hpp"
 
-ArgParse::ArgParse(int argc, char* argv[]) {
+argParse::argParse(int argc, char* argv[]) {
 	args = std::vector<std::string>(argc);
 
 	for(int i = 0; i < argc; ++i) {
@@ -8,8 +8,10 @@ ArgParse::ArgParse(int argc, char* argv[]) {
 	}
 }
 
+argParse::~argParse(){}
+
 bool
-ArgParse::isSet(const std::string& arg) {
+argParse::isSet(const std::string& arg) {
 	for(auto &current : args) {
 		if (current == arg) {
 			return true;
@@ -19,12 +21,16 @@ ArgParse::isSet(const std::string& arg) {
 }
 
 std::string
-ArgParse::getValue(const std::string& arg) {
+argParse::getValue(const std::string& arg) {
 	auto ret = false;
 	for(auto &current : args) {
 		if (ret) {
-			// make a new string because we do not want to pass by reference
-			return std::string(current);
+			// check that the next value string after the flag i want is not another flag
+			if (*current.begin() != '-'){
+				return current;
+			} else {
+				break;
+			}
 		}
 		if (current == arg) {
 			ret = true;
