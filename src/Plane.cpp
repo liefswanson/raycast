@@ -8,16 +8,18 @@ Plane::Plane(Vec normal, double distance, Color color) : Object() {
 
 Plane::~Plane(){}
 
+
+// FIXME drawing plane behind the camera.
 double
 Plane::intersectWith(const Ray& ray) const {
 	auto a = dot(ray.direction, normal);
 	// parrallel to plane
 	if (a == 0) {
-		return -1;
+		return inf;
 	}
 
-	auto b = dot(normal, -(ray.origin + (normal * distance))); 
-	return -b/a;
+	auto b = dot(normal, -(ray.direction + (normal * distance))); 
+	return b/a;
 }
 
 Vec

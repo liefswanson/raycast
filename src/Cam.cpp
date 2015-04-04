@@ -1,5 +1,7 @@
 #include "Cam.hpp"
 
+#include <iostream>
+
 Cam::Cam(Vec position, Vec lookAt){
 	this->position  = position;
 	this->direction = normalize(lookAt - position);

@@ -1,5 +1,6 @@
 #pragma once
 
+#include <limits>
 #include "Vec.hpp"
 #include "Color.hpp"
 
@@ -17,3 +18,5 @@ namespace Palette {
 	const extern Color limeGreen;
 	const extern Color maroon;
 }
+
+const extern double inf; 

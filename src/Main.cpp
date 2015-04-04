@@ -4,7 +4,6 @@
 std::string path = "out/output.bmp";
 
 int main(int argc, char *argv[]) {
-	Scene scene(640, 480);
 	ArgParse parser(argc, argv);
 
 	if (parser.isSet("-p")) {
@@ -20,21 +19,8 @@ int main(int argc, char *argv[]) {
     std::cout << Term::Cyan << "Rendering... " << Term::Reset;// << std::endl;
     // std::cout << Term::Cyan << "[--------------------] (  0%)" << Term::Reset << std::endl;
 
-
-	// Sphere sphere1(World::origin, 1, Palette::limeGreen);
-
-
-	// std::vector<Light*> lights;
-	
-	// std::cout << Term::Green;
-	// for (int i = 0; i < 10; i++) {
-	// 	std::cout << i;
-	// 	usleep(100);
-	// 	if (i != 10 - 1){
-	// 		std::cout << "\b \b";
-	// 	}
-	// }
-
+	Scene scene(640, 480);
+	scene.render();
 	
 	std::cout << Term::IBlue << "Done!" << Term::Reset << std::endl;
 

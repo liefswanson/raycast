@@ -10,3 +10,5 @@ const Color Palette::mattBlack = Color(0, 0, 0, 0);
 const Color Palette::mattWhite = Color(1, 1, 1, 0);
 const Color Palette::limeGreen = Color(0.5, 1, 0.5, 0.3);
 const Color Palette::maroon    = Color(0.5, 0.125, 0.125, 0.3);
+
+const double inf  = std::numeric_limits<double>::infinity();

@@ -6,11 +6,10 @@ class Plane : public Object {
 public:
 	Vec    normal;
 	double distance;
-	Color  color;
 
 	Plane(Vec normal, double distance, Color color);
 	~Plane();
 
-	double intersectWith(const Ray& ray)   const override;
-	Vec    normalAt     (const Vec& point) const override;
+	virtual double intersectWith(const Ray& ray)   const override;
+	virtual Vec    normalAt     (const Vec& point) const override;
 };

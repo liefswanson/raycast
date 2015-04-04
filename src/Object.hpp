@@ -4,12 +4,12 @@
 #include "Constants.hpp"
 
 class Object {
+public:
 	Color color;
 
-public:
 	Object ();
 	~Object();
 
-	virtual double intersectWith(const Ray& ray)   const;
-	virtual Vec    normalAt     (const Vec& point) const;
+	virtual double intersectWith(const Ray& ray)   const = 0;
+	virtual Vec    normalAt     (const Vec& point) const = 0;
 };

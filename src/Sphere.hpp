@@ -8,12 +8,11 @@
 class Sphere : public Object {
 	Vec center;
 	double radius;
-	Color color;
 
 public:
 	Sphere(Vec center, double radius, Color color);
 	~Sphere();
 
-	double intersectWith(const Ray& ray)   const override;
-	Vec    normalAt     (const Vec& point) const override;
+	virtual double intersectWith(const Ray& ray)   const override;
+	virtual Vec    normalAt     (const Vec& point) const override;
 };

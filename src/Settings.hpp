@@ -21,8 +21,10 @@ namespace Settings {
 	const extern Vec screenCenter;
 
 	const extern Light light;
-	const extern std::vector<Object> objects;
+	const extern std::vector<Plane> objects;
 
 	// just for saving the image
 	const extern uint32_t dpi;
+
+	const extern Color background;
 }

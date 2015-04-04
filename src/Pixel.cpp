@@ -9,8 +9,8 @@ Pixel::Pixel(uint8_t r, uint8_t g, uint8_t b){
 }
 Pixel::Pixel(Color col){
 	this->r = col.r * toInt;
-	this->g = col.r * toInt;
-	this->b = col.r * toInt;
+	this->g = col.g * toInt;
+	this->b = col.b * toInt;
 }
 
 Pixel::~Pixel(){}
