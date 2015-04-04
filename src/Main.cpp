@@ -3,12 +3,10 @@
 
 std::string path = "out/output.bmp";
 
-
 int main(int argc, char *argv[]) {
-	Screen screen(640, 480, 72);
+	Scene scene(640, 480);
 	ArgParse parser(argc, argv);
-	Cam cam(Vec(0, 2, -2));
-	
+
 	if (parser.isSet("-p")) {
 		path = parser.getValue("-p");
 		if (path == "") {
@@ -16,50 +14,41 @@ int main(int argc, char *argv[]) {
 			return 1;
 		}
 	} else {
-		std::cout << Term::Cyan << "Using the default path " << Term::Yellow << "\"" << path << "\" " << Term::Reset << std::endl;
+		std::cout << Term::Cyan << "Will use the default path " << Term::Yellow << "\"" << path << "\" " << Term::Reset << std::endl;
 	}
+
+    std::cout << Term::Cyan << "Rendering... " << Term::Reset;// << std::endl;
+    // std::cout << Term::Cyan << "[--------------------] (  0%)" << Term::Reset << std::endl;
+
+
+	// Sphere sphere1(World::origin, 1, Palette::limeGreen);
+
+
+	// std::vector<Light*> lights;
 	
-    std::cout << Term::Cyan << "Rendering... ";
+	// std::cout << Term::Green;
+	// for (int i = 0; i < 10; i++) {
+	// 	std::cout << i;
+	// 	usleep(100);
+	// 	if (i != 10 - 1){
+	// 		std::cout << "\b \b";
+	// 	}
+	// }
 
-
-	Vec x(1, 0, 0);
-	Vec y(0, 1, 0);
-	Vec z(0, 0, 1);
-
-	Vec lookAt(0, 0, 0);
-	Vec diff = cam.position - lookAt;
-
-	cam.direction = normalize(-diff);
-	cam.up = Cam::worldUp;
-
-	std::cout << Term::Green;
-	for (int i = 0; i < 10; i++) {
-		std::cout << i;
-		usleep(100);
-		if (i != 10 - 1){
-			std::cout << "\b \b";
-		}
-	}
 	
-	std::cout << Term::Reset << std::endl;
-	
-	for(uint32_t x = 0; x < screen.width; x++) {
-		for(uint32_t y = 0; y < screen.height; y++) {
-
-		}
-	}
+	std::cout << Term::IBlue << "Done!" << Term::Reset << std::endl;
 
 	// TODO: this should be changed to handle incorrect paths
 	// if the incorrect path does not work y/n to use the default one otherwise the rendering time is lost
 	// alternatively check the path before doing the render
 	try {
 		writeBMP(path,
-				 screen.width, screen.height, screen.dpi,
-				 screen.bgr24(), 24);
+				 scene.screen.width, scene.screen.height, Settings::dpi,
+				 scene.screen.bgr24(), 24);
 	} catch (std::exception e) {
 		std::cout << Term::Red <<  "There was a problem using the path " << Term::Yellow << "\""<< path << "\"" << Term::Red << " to save the file; are you sure the directory exists?" << Term::Reset << std::endl;
 	}
-	
+
     return 0;
 }
 

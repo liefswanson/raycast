@@ -25,10 +25,8 @@ public:
 	friend Vec operator*(const double scalar, const Vec& v);
 
 	friend double dot      (const Vec& left, const Vec&right);
-	friend double operator*(const Vec& left, const Vec& right);
 
 	friend Vec cross       (const Vec& left, const Vec& right); 
-	friend Vec operator^   (const Vec& left, const Vec& right);
 
 	friend Vec add         (const Vec& left, const Vec& right);
 	friend Vec sub         (const Vec& left, const Vec& right);

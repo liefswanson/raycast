@@ -64,10 +64,6 @@ dot(const Vec& left, const Vec& right){
 		+  left.z * right.z;
 }
 
-double
-operator*(const Vec& left, const Vec& right){
-	return dot(left, right);
-}
 
 Vec
 cross(const Vec& left, const Vec& right) {
@@ -76,10 +72,6 @@ cross(const Vec& left, const Vec& right) {
 			   left.x*right.y - left.y*right.x);
 }
 
-Vec
-operator^(const Vec& left, const Vec& right){
-	return cross(left, right);
-}
 
 Vec
 add (const Vec& left, const Vec& right) {
@@ -100,5 +92,5 @@ operator+(const Vec& left, const Vec& right) {
 
 Vec
 operator-(const Vec& left, const Vec& right) {
-	return add(left, -right);
+	return sub(left, right);
 }

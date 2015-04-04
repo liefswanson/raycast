@@ -5,23 +5,27 @@
 #include <stdint.h>
 
 #include "Pixel.hpp"
+#include "Vec.hpp"
+#include "Ray.hpp"
+#include "Cam.hpp"
 
 class Screen {
-private:
-	double normalFactor();
-	
 public:
-
-	Screen(uint32_t height, uint32_t width, uint32_t dpi);
-	~Screen();
-	
-	std::vector<FPixel> pixels;
+	std::vector<Pixel> pixels;
 	uint32_t height;
 	uint32_t width;
-	uint32_t dpi;
+	double   aspectRatio;
+	double   pxScale;
+	Vec      center;
 
-	FPixel& at(uint32_t x, uint32_t y);
-	void normalize();
+	Screen(uint32_t height, uint32_t width, double pxScale,
+		   Vec center);
+	Screen();
+	~Screen();
+
+
+
+	Pixel& at(uint32_t x, uint32_t y);
 	
 	std::vector<uint8_t> bgr24() const;
 };
