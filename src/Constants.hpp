@@ -21,8 +21,5 @@ namespace Palette {
 
 namespace aliases {
 	const extern double inf; 
-}
-
-namespace math {
-	extern double quadratic(double a, double b, double c);
+	const extern double miss; 
 }

@@ -5,6 +5,7 @@
 class Cam {
 public:
 	Vec position;
+	Vec lookAt;
 	Vec direction;
 	Vec right;
 	Vec up;

@@ -1,7 +1,7 @@
 include ../../vars.make
 
 %.o: ../%.cpp ../%.hpp
-	cd ../ && $(cc) $(std) $(flags) -c $*.cpp -o obj/$@ 
+	$(cc) $(std) $(flags) -c ../$*.cpp -o $@ 
 
 clean:
 	rm -f *.o

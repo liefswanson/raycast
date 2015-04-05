@@ -9,18 +9,21 @@ Plane::Plane(Vec normal, double distance, Color color) : Object() {
 Plane::~Plane(){}
 
 
-// FIXME drawing plane behind the camera.
+// FIXME not moving with adjustmont of distance to origin
 double
 Plane::intersectWith(const Ray& ray) const {
-	auto denominator = dot(ray.direction, normal);
-	if (denominator == 0) {
-		return -aliases::inf;
-	}
-
-	auto pointOnPlane = normal * distance;
-	auto numerator    = dot(normal, pointOnPlane - ray.origin);
+	double denom = dot(ray.direction, normal);
 	
-	return numerator/denominator;
+	// shortout, as this  would be a divide by zero
+	if (denom == 0) return aliases::miss;
+
+	double num  = distance - dot(normal, ray.origin);
+	double dist = num/denom;
+
+	// we don't care if the intersection is behind us, just call it a miss
+	if (dist < 0) return aliases::miss;
+
+	return dist;
 }
 
 Vec

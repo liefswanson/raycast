@@ -18,7 +18,7 @@ namespace Settings {
 	const extern double pxScale;
 
 	const extern Vec camPos;
-	const extern Vec screenCenter;
+	const extern Vec camLookAt;
 
 	const extern Light light;
 

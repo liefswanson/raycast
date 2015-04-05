@@ -1,17 +1,16 @@
 #include "Screen.hpp"
 
-Screen::Screen(uint32_t width, uint32_t height, double pxScale,
-			   Vec center){
-	this->width  = width;
-	this->height = height;
-	this->center = center;
+Screen::Screen(uint32_t width, uint32_t height, double pxScale){
+	this->width   = width;
+	this->height  = height;
+	this->pxScale = pxScale;
 
 	this->aspectRatio = (double)width / (double)height;
 
 	this->pixels.resize(width*height, Pixel(0, 0, 0));
 }
 
-Screen::Screen() : Screen(0, 0, 0, World::origin){}
+Screen::Screen() : Screen(0, 0, 0){}
 
 const Pixel&
 Screen::at(uint32_t x, uint32_t y) const {

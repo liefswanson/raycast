@@ -18,8 +18,7 @@ public:
 	double   pxScale;
 	Vec      center;
 
-	Screen(uint32_t height, uint32_t width, double pxScale,
-		   Vec center);
+	Screen(uint32_t height, uint32_t width, double pxScale);
 	Screen();
 	~Screen();
 

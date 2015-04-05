@@ -10,6 +10,7 @@ class Sphere : public Object {
 public:
 	Vec center;
 	double radius;
+	double radius_sq;
 
 	Sphere(Vec center, double radius, Color color);
 	~Sphere();
