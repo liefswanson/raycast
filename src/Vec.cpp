@@ -12,17 +12,12 @@ Vec::Vec() : Vec(0, 0, 0){}
 
 Vec::~Vec(){}
 
-
 double
 Vec::magnitude() const{
 	return sqrt(x*x + y*y + z*z);
 }
 
-
-
-
 // friends
-
 
 Vec
 normalize(const Vec& v){
@@ -30,7 +25,7 @@ normalize(const Vec& v){
 	return s * v;
 }
 
-Vec
+Vec 
 negative(const Vec& v) {
 	return Vec(-v.x, -v.y, -v.z);
 }
@@ -64,14 +59,12 @@ dot(const Vec& left, const Vec& right){
 		+  left.z * right.z;
 }
 
-
 Vec
 cross(const Vec& left, const Vec& right) {
 	return Vec(left.y*right.z - left.z*right.y,
 			   left.z*right.x - left.x*right.z,
 			   left.x*right.y - left.y*right.x);
 }
-
 
 Vec
 add (const Vec& left, const Vec& right) {

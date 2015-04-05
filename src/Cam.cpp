@@ -4,7 +4,7 @@
 
 Cam::Cam(Vec position, Vec lookAt){
 	this->position  = position;
-	this->direction = normalize(lookAt - position);
+	this->direction = -normalize(lookAt - position);
 	
 	// this is suspicious, I dont know if this actually works
 	// I dont think this will be universally true

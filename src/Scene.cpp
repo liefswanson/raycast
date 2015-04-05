@@ -21,7 +21,7 @@ Scene::render() {
 	for(uint32_t x = 0; x < screen.width; x++) {
 		for(uint32_t y = 0; y < screen.height; y++) {
 			
-			auto pxPosition = screen.center
+			Vec pxPosition = screen.center
 				+ (x - widthDisplace  - 0.5) * Settings::pxScale * camera.right
 				+ (y - heightDisplace - 0.5) * Settings::pxScale * camera.up;
 
@@ -40,11 +40,11 @@ Scene::raycast(const Ray& ray) const {
 
 	for (auto obj : objects) {
 		auto temp = obj->intersectWith(ray);
-		if (temp > 0 && temp < dist) {
-			dist    = temp;
-			// std::cout << temp << std::endl;
-			closest = obj;
+		if(temp > -aliases::inf) {
+			std::cout << temp << std::endl;
 		}
+		dist    = temp;
+		closest = obj;
 	}
 
 	if (closest != NULL && dist > 0) {

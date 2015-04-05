@@ -20,10 +20,13 @@ int main(int argc, char *argv[]) {
 
 	auto objects = std::vector<Object*>();
 	Plane ground = Plane(World::y, -1, Palette::maroon);
-	objects.push_back(dynamic_cast<Object*>(&ground));
+	//objects.push_back(dynamic_cast<Object*>(&ground));
+
+	Sphere sphere = Sphere(World::origin, 1, Palette::limeGreen);
+	objects.push_back(dynamic_cast<Object*>(&sphere));
 
 	Scene scene(640, 480, objects);
-		
+	
 	scene.render();
 	
 	std::cout << Term::IBlue << "Done!" << Term::Reset << std::endl;
