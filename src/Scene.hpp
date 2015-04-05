@@ -18,12 +18,12 @@ public:
 	Cam    camera;
 	Screen screen;
 	
-	std::vector<Plane> objects;
+	std::vector<Object*> objects;
 	Light light;
 	
-	Scene(uint32_t height, uint32_t width);
+	Scene(uint32_t height, uint32_t width, std::vector<Object*> objects);
 	~Scene();
 
 	void render();
-	Color raycast(const Vec& scene) const;
+	Color raycast(const Ray& ray) const;
 };

@@ -7,6 +7,4 @@ Ray::Ray(Vec origin, Vec destination) {
 	this->direction   = normalize(origin - destination);
 }
 
-Ray::Ray(Vec destination) : Ray(World::origin, destination) {}
-
 Ray::~Ray() {}

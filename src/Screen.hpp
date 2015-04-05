@@ -26,6 +26,4 @@ public:
 
 
 	Pixel& at(uint32_t x, uint32_t y);
-	
-	std::vector<uint8_t> bgr24() const;
 };

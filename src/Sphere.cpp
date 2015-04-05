@@ -11,6 +11,7 @@ Sphere::~Sphere(){}
 // TODO stub
 double
 Sphere::intersectWith(const Ray& ray) const{
+	
 	return 0;
 }
 

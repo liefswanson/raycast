@@ -8,6 +8,5 @@ public:
 	Vec direction;
 	
 	Ray(Vec origin, Vec destination);
-	Ray(Vec destination);
 	~Ray();
 };

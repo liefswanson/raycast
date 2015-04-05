@@ -19,4 +19,10 @@ namespace Palette {
 	const extern Color maroon;
 }
 
-const extern double inf; 
+namespace aliases {
+	const extern double inf; 
+}
+
+namespace math {
+	extern double quadratic(double a, double b, double c);
+}

@@ -11,4 +11,15 @@ const Color Palette::mattWhite = Color(1, 1, 1, 0);
 const Color Palette::limeGreen = Color(0.5, 1, 0.5, 0.3);
 const Color Palette::maroon    = Color(0.5, 0.125, 0.125, 0.3);
 
-const double inf  = std::numeric_limits<double>::infinity();
+const double aliases::inf  = std::numeric_limits<double>::infinity();
+
+double math::quadratic(double a, double b, double c){
+	double discriminant = b*b - 4*a*c;
+	if (discriminant < 0) {
+		
+	} else {
+		
+	}
+	
+	return discriminant;
+}

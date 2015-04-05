@@ -1,5 +1,4 @@
 #include "Main.hpp"
-#include <unistd.h>
 
 std::string path = "out/output.bmp";
 
@@ -19,7 +18,12 @@ int main(int argc, char *argv[]) {
     std::cout << Term::Cyan << "Rendering... " << Term::Reset;// << std::endl;
     // std::cout << Term::Cyan << "[--------------------] (  0%)" << Term::Reset << std::endl;
 
-	Scene scene(640, 480);
+	auto objects = std::vector<Object*>();
+	Plane ground = Plane(World::y, -1, Palette::maroon);
+	objects.push_back(dynamic_cast<Object*>(&ground));
+
+	Scene scene(640, 480, objects);
+		
 	scene.render();
 	
 	std::cout << Term::IBlue << "Done!" << Term::Reset << std::endl;
@@ -28,13 +32,13 @@ int main(int argc, char *argv[]) {
 	// if the incorrect path does not work y/n to use the default one otherwise the rendering time is lost
 	// alternatively check the path before doing the render
 	try {
-		writeBMP(path,
-				 scene.screen.width, scene.screen.height, Settings::dpi,
-				 scene.screen.bgr24(), 24);
+		writeBMP24bit(path, scene.screen, Settings::dpi);
+		
 	} catch (std::exception e) {
 		std::cout << Term::Red <<  "There was a problem using the path " << Term::Yellow << "\""<< path << "\"" << Term::Red << " to save the file; are you sure the directory exists?" << Term::Reset << std::endl;
 	}
 
     return 0;
 }
+
 

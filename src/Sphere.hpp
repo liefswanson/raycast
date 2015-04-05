@@ -4,12 +4,13 @@
 #include "Vec.hpp"
 #include "Color.hpp"
 #include "Object.hpp"
+#include "Constants.hpp"
 
 class Sphere : public Object {
+public:
 	Vec center;
 	double radius;
 
-public:
 	Sphere(Vec center, double radius, Color color);
 	~Sphere();
 
