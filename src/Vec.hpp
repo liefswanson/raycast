@@ -1,5 +1,7 @@
 #pragma once
 
+#include <iostream>
+#include <string>
 #include <cmath>
 
 class Vec{
@@ -12,6 +14,8 @@ public:
 	Vec(double v);
 	Vec();
 	~Vec();
+
+	friend std::ostream& operator<<(std::ostream& os, const Vec& v);
 
 	double magnitude() const;
 

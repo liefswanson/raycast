@@ -12,6 +12,12 @@ Vec::Vec() : Vec(0, 0, 0){}
 
 Vec::~Vec(){}
 
+std::ostream&
+operator<<(std::ostream& os, const Vec& v){
+	os << '(' << v.x << ',' << ' ' << v.y << ',' << ' ' << v.z << ')';
+	return os;
+}
+
 double
 Vec::magnitude() const{
 	return sqrt(x*x + y*y + z*z);

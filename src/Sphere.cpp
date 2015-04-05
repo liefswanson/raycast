@@ -23,7 +23,7 @@ Sphere::intersectWith(const Ray& ray) const{
 		+ distVec.x * distVec.x
 		+ distVec.x * distVec.x
 		- radius    * radius;
-	return math::quadratic(a, b, c);
+	return -math::quadratic(a, b, c);
 }
 
 Vec

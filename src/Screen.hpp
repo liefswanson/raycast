@@ -23,7 +23,7 @@ public:
 	Screen();
 	~Screen();
 
-
-
+	const Pixel& at(uint32_t x, uint32_t y) const;
 	Pixel& at(uint32_t x, uint32_t y);
+
 };

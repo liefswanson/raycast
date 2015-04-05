@@ -10,6 +10,6 @@ public:
 	Vec up;
 
 	Cam(Vec position, Vec LookAt);
-	Cam(Vec lookat = World::origin);
+	Cam();
 	~Cam();
 };
