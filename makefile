@@ -11,7 +11,7 @@ bin:
 run: bin
 	src/bin/$(bin)
 
-run-save:
+run-save: bin
 	src/bin/$(bin) -p out/$(shell date +%s).bmp
 
 clean:

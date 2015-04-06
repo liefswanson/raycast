@@ -12,11 +12,18 @@ Scene::Scene(Screen& screen, Cam& camera, std::vector<Object*>& objects, std::ve
 Scene::~Scene(){}
 
 void
-Scene::render() {
+Scene::render(bool superSample) {
 	// offsets the screen center to the topleft pixel for use of iterating through
 	Vec topLeft = camera.lookAt
 		+ 0.5 * screen.width  * screen.pxScale * camera.left
 		+ 0.5 * screen.height * screen.pxScale * camera.up;
+
+	// only used during super-sampling
+	Vec leftAdjust  = 0.25 * screen.pxScale * camera.left;
+	Vec rightAdjust = 0.25 * screen.pxScale * camera.right; 
+
+	Vec upAdjust    = 0.25 * screen.pxScale * camera.up;
+	Vec downAdjust  = 0.25 * screen.pxScale * camera.down;
 	
 	for(uint32_t x = 0; x < screen.width; x++) {
 		Vec deltaX = (x + 0.5) * screen.pxScale * camera.right;
@@ -27,10 +34,28 @@ Scene::render() {
 			Vec pxPosition = topLeft + deltaX + deltaY;
 			// std::cout << pxPosition << std::endl;
 			
-			auto ray = Ray(camera.position, pxPosition);
-			// FIXME colors MUST be normalized before being put in a pixel
 			// FIXME make this settable by commandline arguements
-			screen.at(x, y) = raycast(ray, NULL, Settings::recursionDepth);
+			if (superSample) {
+				screen.at(x, y)
+					= raycast(Ray(camera.position, pxPosition),
+							  NULL, Settings::recursionDepth)
+					
+					+ raycast(Ray(camera.position, pxPosition + leftAdjust  + upAdjust),
+							  NULL, Settings::recursionDepth)
+
+					+ raycast(Ray(camera.position, pxPosition + rightAdjust + upAdjust),
+							  NULL, Settings::recursionDepth)
+
+					+ raycast(Ray(camera.position, pxPosition + leftAdjust  + downAdjust),
+							  NULL, Settings::recursionDepth)
+
+					+ raycast(Ray(camera.position, pxPosition + rightAdjust + downAdjust),
+							  NULL, Settings::recursionDepth);	
+			} else {
+				screen.at(x, y)
+					= raycast(Ray(camera.position, pxPosition),
+							  NULL, Settings::recursionDepth);
+			}
 		}
 	}
 }
@@ -60,6 +85,7 @@ Scene::raycast(const Ray& ray, const Object* ingnore, uint depth) const {
 		auto norm      = closest->normalAt(point); 
 		auto direction = normalize(lights[0]->position - point);
 
+		// FIXME this should not be the negative dot product, it is very possible the world is inverted vertically
 		double factor  = -dot(direction, norm) * lights[0]->intensity;
 		// if(factor < 0) std::cout << norm << " " << direction << std::endl;
 		

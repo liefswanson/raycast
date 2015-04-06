@@ -64,11 +64,12 @@ CheckerBoard::colorAt(const Vec& point) const {
 	double distR = dot(point, right);
 	double distF = dot(point, forward);
 
-	uint check  = trunc(distR/size); 
-	uint check2 = trunc(distF/size);
+	uint checkR  = trunc(distR/size); 
+	uint checkF = trunc(distF/size);
 
-	if (check%2 == check2%2){
-		return color;	
+	// TODO this check breaks down when one unit from the origin
+	if (checkR%2 == checkF%2) {
+		return color;
 	} else {
 		return color2;
 	}

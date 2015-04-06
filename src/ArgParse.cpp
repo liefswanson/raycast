@@ -26,7 +26,8 @@ ArgParse::getValue(const std::string& arg) {
 	for(auto &current : args) {
 		if (ret) {
 			// check that the next value string after the flag i want is not another flag
-			if (*current.begin() != '-'){
+			if (*current.begin() != '-' &&
+				*current.begin() != '+'){
 				return current;
 			} else {
 				break;
