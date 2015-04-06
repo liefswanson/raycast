@@ -32,8 +32,9 @@ Screen::normalize(){
 		factor = std::max(factor, px.g);
 		factor = std::max(factor, px.b);
 	}
-	
-	if (factor == 0) return; 
+
+	// no normalizing to do
+	if (factor < 1) return; 
 	
 	for(auto&px : pixels) {
 		px = px/factor;

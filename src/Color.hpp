@@ -8,7 +8,7 @@ public:
 	double g;
 	double b;
 	double reflectivity;
-	double refractivity;
+	double transparency;
 
 	Color(double r, double g, double b,
 		  double reflectivity = 0, double refractivity = 0);

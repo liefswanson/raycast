@@ -182,8 +182,10 @@ main(int argc, char *argv[]) {
 
 	auto lights = std::vector<Light*>();
 	Light light(Vec(-7, 20, -1), Palette::mattWhite, 1);
+	Light light2(Vec(7, -1, -12), Palette::mattWhite, 0.25);
+	lights.push_back(&light2);
 	lights.push_back(&light);
-	
+
 	Screen screen(512, 512, Settings::pxScale);
 	Cam camera(Settings::camPos, Settings::camLookAt);
 

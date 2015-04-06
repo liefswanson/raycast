@@ -74,25 +74,37 @@ Scene::raycast(const Ray& ray, const Object* ingnore, uint depth) const {
 		}
 	}
 
-	if (dist != Ray::miss &&
-		dist != aliases::inf) {
+	// don't need to do any reflection here, we didn't hit anything
+	if (dist == Ray::miss || dist == aliases::inf) return Settings::background;
 
+	// TODO this should be the color of the refraction ray
+	Color color = Color(0, 0, 0, 0, 0);
+	
+	for (auto light: lights) {
 		auto point     = ray.origin + ray.direction * dist;
 
 		auto objcol    = closest->colorAt(point);
 
 		auto norm      = closest->normalAt(point); 
-		auto direction = normalize(lights[0]->position - point);
+		auto direction = normalize(light->position - point);
 
-		double diffuse  = dot(direction, norm) * lights[0]->intensity;
+		double diffuse  = dot(direction, norm);
+		double specular = pow(diffuse, objcol.reflectivity * Settings::specularMax);
 		
-		if (diffuse < 0) return objcol * Settings::ambient;
+		if (diffuse < 0) {
+			color = color +  Settings::ambient * (1 - objcol.transparency) * objcol;	
+		} else {
+			color = color +
+				Settings::ambient
+				* (1 - objcol.transparency) * objcol
 
-		return  objcol * Settings::ambient
-			+ (1 - objcol.reflectivity) * objcol * diffuse
-			+ objcol.reflectivity * objcol * pow(diffuse, objcol.reflectivity * Settings::specularMax);
+				+ diffuse
+				* (1 - objcol.reflectivity) * objcol * light->intensity 
 
-	} else {
-		return Settings::background;
+				+ specular
+				* objcol.reflectivity       * objcol * light->intensity;
+		}
+		
 	}
+	return color;
 }

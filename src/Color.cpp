@@ -1,12 +1,12 @@
 #include "Color.hpp"
 
 Color::Color(double r, double g, double b,
-			 double reflectivity, double refractivity) {
+			 double reflectivity, double transparency) {
 	this->r = r;
 	this->g = g;
 	this->b = b;
 	this->reflectivity = reflectivity;
-	this->refractivity = refractivity;
+	this->transparency = transparency;
 }
 
 Color::Color() : Color(0, 0, 0, 0, 0){}
@@ -19,7 +19,7 @@ scale(const Color& left, double scalar) {
 				 left.g*scalar,
 				 left.b*scalar,
 				 left.reflectivity,
-				 left.refractivity);
+				 left.transparency);
 }
 
 Color
@@ -43,8 +43,8 @@ add (const Color& left, const Color& right) {
 	return Color(left.r + right.r,
 				 left.g + right.g,
 				 left.b + right.b,
-				 left.reflectivity,
-				 left.refractivity);
+				 (left.reflectivity + right.reflectivity)/2,
+				 (left.transparency + right.transparency)/2);
 }
 
 Color
