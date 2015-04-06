@@ -15,14 +15,14 @@ void
 Scene::render() {
 	// offsets the screen center to the topleft pixel for use of iterating through
 	Vec topLeft = camera.lookAt
-		- 0.5 * screen.width  * screen.pxScale * camera.right
-		- 0.5 * screen.height * screen.pxScale * camera.up;
+		+ 0.5 * screen.width  * screen.pxScale * camera.left
+		+ 0.5 * screen.height * screen.pxScale * camera.up;
 	
 	for(uint32_t x = 0; x < screen.width; x++) {
 		Vec deltaX = (x + 0.5) * screen.pxScale * camera.right;
 
 		for(uint32_t y = 0; y < screen.height; y++) {
-			Vec deltaY = (y + 0.5) * screen.pxScale * camera.up;
+			Vec deltaY = (y + 0.5) * screen.pxScale * camera.down;
 
 			Vec pxPosition = topLeft + deltaX + deltaY;
 			// std::cout << pxPosition << std::endl;
@@ -37,22 +37,21 @@ Scene::render() {
 
 Color
 Scene::raycast(const Ray& ray) const {
-	using namespace aliases;
 	
 	const Object* closest = NULL;
-	double dist = inf;
+	double dist = aliases::inf;
 
 	for (auto obj : objects) {
 		auto temp = obj->intersectWith(ray);
 		if (temp <  dist &&
-			temp != miss) {
+			temp != Ray::miss) {
 			dist    = temp;
 			closest = obj;
 		}
 	}
 
-	if (dist != miss &&
-		dist != inf) {
+	if (dist != Ray::miss &&
+		dist != aliases::inf) {
 		return closest->color;
 	} else {
 		return Settings::background;

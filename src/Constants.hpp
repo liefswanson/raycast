@@ -21,5 +21,4 @@ namespace Palette {
 
 namespace aliases {
 	const extern double inf; 
-	const extern double miss; 
 }

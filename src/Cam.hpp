@@ -8,7 +8,9 @@ public:
 	Vec lookAt;
 	Vec direction;
 	Vec right;
+	Vec left;
 	Vec up;
+	Vec down;
 
 	Cam(Vec position, Vec LookAt);
 	Cam();

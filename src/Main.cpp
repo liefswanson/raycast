@@ -19,8 +19,8 @@ int main(int argc, char *argv[]) {
     // std::cout << Term::Cyan << "[--------------------] (  0%)" << Term::Reset << std::endl;
 
 	auto objects = std::vector<Object*>();
-	Plane ground = Plane(World::y, -1, Palette::maroon);
-	// objects.push_back(dynamic_cast<Object*>(&ground));
+	Plane ground = Plane(World::y, -2, Palette::maroon);
+    objects.push_back(dynamic_cast<Object*>(&ground));
 
 	Sphere sphere = Sphere(World::origin, 1, Palette::limeGreen);
 	objects.push_back(dynamic_cast<Object*>(&sphere));
@@ -33,6 +33,7 @@ int main(int argc, char *argv[]) {
 	scene.render();
 	
 	std::cout << Term::IBlue << "Done!" << Term::Reset << std::endl;
+
 
 	// TODO: this should be changed to handle incorrect paths
 	// if the incorrect path does not work y/n to use the default one otherwise the rendering time is lost
@@ -48,3 +49,18 @@ int main(int argc, char *argv[]) {
 }
 
 
+	auto temp = Pixel(Palette::maroon);
+	for (uint y = 0; y < scene.screen.height; y++) {
+		auto px = scene.screen.at(0,y);
+		if ( px.r == temp.r && px.g == temp.g && px.b == temp.b) {
+			std::cout << y << std::endl;
+		}
+	}
+
+	// auto temp = Pixel(Palette::maroon);
+	// for (uint y = 0; y < scene.screen.height; y++) {
+	// 	auto px = scene.screen.at(0,y);
+	// 	if ( px.r == temp.r && px.g == temp.g && px.b == temp.b) {
+	// 		std::cout << y << std::endl;
+	// 	}
+	// }

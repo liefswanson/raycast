@@ -12,16 +12,17 @@ Plane::~Plane(){}
 // FIXME not moving with adjustmont of distance to origin
 double
 Plane::intersectWith(const Ray& ray) const {
-	double denom = dot(ray.direction, normal);
+	double denom = dot(normal, ray.direction);
 	
 	// shortout, as this  would be a divide by zero
-	if (denom == 0) return aliases::miss;
+	// ie plane and line intersect at infinity, or negative infinity
+	if (denom == 0) return Ray::miss;
 
 	double num  = distance - dot(normal, ray.origin);
 	double dist = num/denom;
-
+	
 	// we don't care if the intersection is behind us, just call it a miss
-	if (dist < 0) return aliases::miss;
+	if (dist <= 0) return Ray::miss;
 
 	return dist;
 }

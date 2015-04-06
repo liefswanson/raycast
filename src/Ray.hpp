@@ -3,6 +3,8 @@
 
 class Ray{
 public:
+	const static double miss; 
+
 	Vec origin;
 	Vec destination;
 	Vec direction;

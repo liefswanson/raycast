@@ -12,4 +12,3 @@ const Color Palette::limeGreen = Color(0.5, 1, 0.5, 0.3);
 const Color Palette::maroon    = Color(0.5, 0.125, 0.125, 0.3);
 
 const double aliases::inf      =  std::numeric_limits<double>::infinity();
-const double aliases::miss     = -inf;

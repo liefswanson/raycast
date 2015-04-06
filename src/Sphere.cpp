@@ -21,24 +21,22 @@ Sphere::intersectWith(const Ray& ray) const{
 	// https://en.wikipedia.org/wiki/Line%E2%80%93sphere_intersection
 	double discriminant = b*b - c; 
 
-	if (discriminant > 0) {
+	if (discriminant >= 0) {
 		discriminant = sqrt(discriminant); //so we never calculate the sqrt twice
 
 		double smallerRoot = (-b - discriminant);
 		// only return the smaller root if it is positive
-		std::cout << smallerRoot << std::endl;
 		if (smallerRoot > 0) return smallerRoot;
 
 		double biggerRoot  = (-b + discriminant);
 		// once again only return if positive
-		std::cout << biggerRoot << std::endl;
 		if (biggerRoot > 0)  return biggerRoot;
 	}
 	
 	// either an imaginary number or a negative number would have resulted
 	// as such it will be ignored...
 	// as this ray does not intersect with the sphere on this plane of reality
-	return aliases::miss;
+	return Ray::miss;
 }
 
 Vec
