@@ -158,7 +158,7 @@ main(int argc, char *argv[]) {
 	
 	auto objects = std::vector<Object*>();
 	// Plane ground (World::y, -2, Palette::maroon);
-	CheckerBoard ground(-World::x, World::z, 2, Palette::muddyRed, Palette::mattWhite, 1);
+	CheckerBoard ground(World::x, World::z, -2, Palette::muddyRed, Palette::mattWhite, 1);
 	if (chessBoard) objects.push_back(dynamic_cast<Object*>(&ground));
 
 	Sphere defred  (Settings::camLookAt
@@ -174,7 +174,7 @@ main(int argc, char *argv[]) {
 					- 0.8 * World::x
 					- 0.5 * World::z
 					+ 1.2 * World::y,
-					0.75, Palette::limeGreen);
+					0.65, Palette::limeGreen);
 	if (defaultScene) {
 		objects.push_back(dynamic_cast<Object*>(&defred));	
 		objects.push_back(dynamic_cast<Object*>(&defgreen));

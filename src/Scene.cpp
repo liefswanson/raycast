@@ -84,8 +84,8 @@ Scene::raycast(const Ray& ray, const Object* ingnore, uint depth) const {
 		auto norm      = closest->normalAt(point); 
 		auto direction = normalize(lights[0]->position - point);
 
-		// FIXME this should not be the negative dot product, it is very possible the world is inverted vertically
-		double factor  = -dot(direction, norm) * lights[0]->intensity;
+		// FIXME this should not be the negative dot product, it is very possible the world is inverted vertically something may be incorrect here, but i don't know what
+		double factor  = dot(direction, norm) * lights[0]->intensity;
 		// if(factor < 0) std::cout << norm << " " << direction << std::endl;
 		
 		if (factor < 0) return objcol * Settings::ambient;
