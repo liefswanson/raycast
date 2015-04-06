@@ -12,7 +12,7 @@ Scene::Scene(Screen& screen, Cam& camera, std::vector<Object*>& objects, std::ve
 Scene::~Scene(){}
 
 void
-Scene::render(bool superSample) {
+Scene::render(bool superSample, uint depth) {
 	// offsets the screen center to the topleft pixel for use of iterating through
 	Vec topLeft = camera.lookAt
 		+ 0.5 * screen.width  * screen.pxScale * camera.left
@@ -34,27 +34,26 @@ Scene::render(bool superSample) {
 			Vec pxPosition = topLeft + deltaX + deltaY;
 			// std::cout << pxPosition << std::endl;
 			
-			// FIXME make this settable by commandline arguements
 			if (superSample) {
 				screen.at(x, y)
 					= raycast(Ray(camera.position, pxPosition),
-							  NULL, Settings::recursionDepth)
+							  NULL, depth)
 					
 					+ raycast(Ray(camera.position, pxPosition + leftAdjust  + upAdjust),
-							  NULL, Settings::recursionDepth)
+							  NULL, depth)
 
 					+ raycast(Ray(camera.position, pxPosition + rightAdjust + upAdjust),
-							  NULL, Settings::recursionDepth)
+							  NULL, depth)
 
 					+ raycast(Ray(camera.position, pxPosition + leftAdjust  + downAdjust),
-							  NULL, Settings::recursionDepth)
+							  NULL, depth)
 
 					+ raycast(Ray(camera.position, pxPosition + rightAdjust + downAdjust),
-							  NULL, Settings::recursionDepth);	
+							  NULL, depth);	
 			} else {
 				screen.at(x, y)
 					= raycast(Ray(camera.position, pxPosition),
-							  NULL, Settings::recursionDepth);
+							  NULL, depth);
 			}
 		}
 	}

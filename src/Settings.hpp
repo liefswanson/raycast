@@ -27,6 +27,7 @@ namespace Settings {
 
 	const extern Color background;
 
-	const extern unsigned minimumThreads;
-	const extern uint     recursionDepth;
+	const extern unsigned    minimumThreads;
+	const extern uint        defaultDepth;
+	const extern std::string defaultPath;
 }

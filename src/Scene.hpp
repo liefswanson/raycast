@@ -28,7 +28,7 @@ public:
 	Scene(Screen& screen, Cam& camera, std::vector<Object*>& objects, std::vector<Light*>& lights);
 	~Scene();
 
-	void render(bool superSample);
+	void render(bool superSample, uint depth);
 
-	Color raycast(const Ray& ray, const Object*, uint depth) const;
+	Color raycast(const Ray& ray, const Object* ignore, uint depth) const;
 };

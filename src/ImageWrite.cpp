@@ -14,6 +14,7 @@ writeBMP24bit(const std::string& path,
 			  std::ofstream::binary |
 			  std::ofstream::trunc);
 	if (!file) {
+		file.close();
 		throw std::exception();
 	}
 	

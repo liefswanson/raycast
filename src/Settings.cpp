@@ -9,5 +9,7 @@ const double   Settings::ambient       = 0.05;
 
 const Color    Settings::background     = Palette::mattBlack;
 
-const unsigned Settings::minimumThreads = 4;
-const uint     Settings::recursionDepth = 2;
+// currently unused
+const unsigned    Settings::minimumThreads = 4;
+const uint        Settings::defaultDepth   = 0;
+const std::string Settings::defaultPath    = "out/output.bmp";
