@@ -41,7 +41,7 @@ main(int argc, char *argv[]) {
 	
 
 	// ------------------------------------------------------------------------------------------
-	// [-u | -d] < recursion_depth >
+	// [-u | -d] < recursion_depth > TODO
 	// ------------------------------------------------------------------------------------------
 
 	userScene = parser.isSet("-u");
@@ -87,50 +87,49 @@ main(int argc, char *argv[]) {
 	}
 
 	// ------------------------------------------------------------------------------------------
-	// +s
+	// +s TODO
 	// ------------------------------------------------------------------------------------------
 
 	shadows = parser.isSet("+s");
 	notImplemented("shadows");
 	
 	// ------------------------------------------------------------------------------------------
-	// +l
+	// +l TODO
 	// ------------------------------------------------------------------------------------------
 
 	reflections = parser.isSet("+l");
 	notImplemented("reflection");
 
 	// ------------------------------------------------------------------------------------------
-	// +r
+	// +r TODO
 	// ------------------------------------------------------------------------------------------
 	
 	refractions = parser.isSet("+r");
 	notImplemented("refraction");
 
 	// ------------------------------------------------------------------------------------------
-	// +c
+	// +c DONE
 	// ------------------------------------------------------------------------------------------
 	
 	chessBoard  = parser.isSet("+c");
 	argStatus("Chess board", chessBoard);
 
-
 	// ------------------------------------------------------------------------------------------
-	// +f
+	// +f TODO
 	// ------------------------------------------------------------------------------------------
 
 	stochasticDiffuse = parser.isSet("+f");
 	notImplemented("stochastic diffusion");
 
 	// ------------------------------------------------------------------------------------------
-	// +p
+	// +p DONE
 	// ------------------------------------------------------------------------------------------
 
 	superSample = parser.isSet("+p");
 	argStatus("Super sample", superSample);
 
 	// ------------------------------------------------------------------------------------------
-	// -p
+	// -p DONE
 	// ------------------------------------------------------------------------------------------
 	
 	std::string path;
@@ -159,14 +158,31 @@ main(int argc, char *argv[]) {
 	
 	auto objects = std::vector<Object*>();
 	// Plane ground (World::y, -2, Palette::maroon);
-	CheckerBoard ground(-World::x, World::z, 2, Palette::maroon, Palette::mattWhite, 1);
+	CheckerBoard ground(-World::x, World::z, 2, Palette::muddyRed, Palette::mattWhite, 1);
 	if (chessBoard) objects.push_back(dynamic_cast<Object*>(&ground));
 
-	Sphere sphere (Settings::camLookAt, 1, Palette::limeGreen);
-	if (userScene) objects.push_back(dynamic_cast<Object*>(&sphere));
+	Sphere defred  (Settings::camLookAt
+					- 1.5 * World::x
+					- 0.5 * World::y,
+					1, Palette::muddyRed);
+	Sphere defblue (Settings::camLookAt
+					+ 0.5 * World::x
+					- 1.2 * World::z
+					- 0.6 * World::y,
+					0.9, Palette::paleBlue);
+	Sphere defgreen(Settings::camLookAt
+					- 0.8 * World::x
+					- 0.5 * World::z
+					+ 1.2 * World::y,
+					0.75, Palette::limeGreen);
+	if (defaultScene) {
+		objects.push_back(dynamic_cast<Object*>(&defred));	
+		objects.push_back(dynamic_cast<Object*>(&defgreen));
+		objects.push_back(dynamic_cast<Object*>(&defblue));
+	}
 
 	auto lights = std::vector<Light*>();
-	Light light(Vec(7, 10, -10), Palette::lightWhite, 1);
+	Light light(Vec(-7, 20, 0), Palette::lightWhite, 1);
 	lights.push_back(&light);
 	
 	Screen screen(512, 512, Settings::pxScale);
