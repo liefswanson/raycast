@@ -26,11 +26,11 @@ Sphere::intersectWith(const Ray& ray) const{
 
 		double smallerRoot = (-b - discriminant);
 		// only return the smaller root if it is positive
-		if (smallerRoot > 0) return smallerRoot;
+		if (smallerRoot >= 0) return smallerRoot;
 
 		double biggerRoot  = (-b + discriminant);
 		// once again only return if positive
-		if (biggerRoot > 0)  return biggerRoot;
+		if (biggerRoot >= 0)  return biggerRoot;
 	}
 	
 	// either an imaginary number or a negative number would have resulted

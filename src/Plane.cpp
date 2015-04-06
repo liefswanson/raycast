@@ -22,7 +22,7 @@ Plane::intersectWith(const Ray& ray) const {
 	double dist = num/denom;
 	
 	// we don't care if the intersection is behind us, just call it a miss
-	if (dist <= 0) return Ray::miss;
+	if (dist < 0) return Ray::miss;
 
 	return dist;
 }
