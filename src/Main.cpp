@@ -20,8 +20,9 @@ main(int argc, char *argv[]) {
 	// build the scene before passing it to the scene object for rendering
 	
 	auto objects = std::vector<Object*>();
-	Plane ground (World::y, -2, Palette::maroon);
-    objects.push_back(dynamic_cast<Object*>(&ground));
+	// Plane ground (World::y, -2, Palette::maroon);
+	CheckerBoard ground(World::x, World::z, -2, Palette::mattWhite, Palette::mattBlack, 1);
+	objects.push_back(dynamic_cast<Object*>(&ground));
 
 	Sphere sphere (World::origin, 1, Palette::limeGreen);
 	objects.push_back(dynamic_cast<Object*>(&sphere));
@@ -51,10 +52,3 @@ main(int argc, char *argv[]) {
 
     return 0;
 }
-	// auto temp = Pixel(Palette::maroon);
-	// for (uint y = 0; y < scene.screen.height; y++) {
-	// 	auto px = scene.screen.at(0,y);
-	// 	if ( px.r == temp.r && px.g == temp.g && px.b == temp.b) {
-	// 		std::cout << y << std::endl;
-	// 	}
-	// }

@@ -1,15 +1,15 @@
 #include "Color.hpp"
 
-Color::Color(double r, double g, double b, double reflectivity) {
+Color::Color(double r, double g, double b,
+			 double reflectivity, double refractivity) {
 	this->r = r;
 	this->g = g;
 	this->b = b;
 	this->reflectivity = reflectivity;
+	this->refractivity = refractivity;
 }
 
-Color::Color(double bw, double reflectivity) : Color(bw, bw, bw, reflectivity){}
-
-Color::Color() : Color(0, 0, 0, 0){}
+Color::Color() : Color(0, 0, 0, 0, 0){}
 
 Color::~Color(){}
 

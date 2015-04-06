@@ -51,7 +51,7 @@ Scene::raycast(const Ray& ray) const {
 
 	if (dist != Ray::miss &&
 		dist != aliases::inf) {
-		return closest->color;
+		return closest->colorAt(ray.direction*dist);
 	} else {
 		return Settings::background;
 	}

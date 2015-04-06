@@ -8,9 +8,10 @@ public:
 	double g;
 	double b;
 	double reflectivity;
+	double refractivity;
 
-	Color(double r, double g, double b, double reflectivity = 0);
-	Color(double bw, double reflectivity = 0);
+	Color(double r, double g, double b, double
+		  reflectivity = 0, double refractivity = 0);
 	Color();
 	~Color();
 

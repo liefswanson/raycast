@@ -39,7 +39,14 @@ Sphere::intersectWith(const Ray& ray) const{
 	return Ray::miss;
 }
 
+
 Vec
 Sphere::normalAt(const Vec& point) const {
-	return World::origin;
+	return normalize(point - center);
+}
+
+
+Color
+Sphere::colorAt(const Vec& point) const {
+	return color;
 }

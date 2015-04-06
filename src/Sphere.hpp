@@ -17,4 +17,5 @@ public:
 
 	virtual double intersectWith(const Ray& ray)   const override;
 	virtual Vec    normalAt     (const Vec& point) const override;
+	virtual Color  colorAt      (const Vec& point) const override;
 };
