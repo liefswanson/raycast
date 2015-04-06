@@ -18,7 +18,8 @@ scale(const Color& left, double scalar) {
 	return Color(left.r*scalar,
 				 left.g*scalar,
 				 left.b*scalar,
-				 left.reflectivity*scalar);
+				 left.reflectivity,
+				 left.refractivity);
 }
 
 Color
@@ -32,11 +33,18 @@ operator*(double scalar, const Color& left) {
 }
 
 Color
+operator/(const Color& left, double scalar) {
+	return scale(left, 1/scalar);
+}
+
+
+Color
 add (const Color& left, const Color& right) {
 	return Color(left.r + right.r,
 				 left.g + right.g,
 				 left.b + right.b,
-				 left.reflectivity + right.reflectivity);
+				 left.reflectivity,
+				 left.refractivity);
 }
 
 Color
@@ -48,7 +56,6 @@ Color
 normalize(const Color& col){
 	double scale = std::max(col.r, col.g);
 	scale = std::max(scale, col.b);
-	scale = std::max(scale, col.reflectivity);
 
 	double factor = 1.0/scale;
 	return col * factor;

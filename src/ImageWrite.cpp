@@ -92,7 +92,7 @@ bgr24(const Screen& screen){
 	// because why not lets just make them as hard to understand as possible
 	for (uint y = 1; y <= screen.height; y++){
 		for(uint x = 0; x < screen.width; x++) {
-			auto px = screen.pixels[(screen.height - y)*screen.width + x];
+			auto px = Pixel(screen.pixels[(screen.height - y)*screen.width + x]);
 			raw.push_back(px.b);
 			raw.push_back(px.g);
 			raw.push_back(px.r);	

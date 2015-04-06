@@ -11,7 +11,7 @@
 
 class Screen {
 public:
-	std::vector<Pixel> pixels;
+	std::vector<Color> pixels;
 	uint32_t height;
 	uint32_t width;
 	double   aspectRatio;
@@ -22,7 +22,8 @@ public:
 	Screen();
 	~Screen();
 
-	const Pixel& at(uint32_t x, uint32_t y) const;
-	Pixel& at(uint32_t x, uint32_t y);
+	const Color& at(uint32_t x, uint32_t y) const;
+	Color& at(uint32_t x, uint32_t y);
 
+	void normalize();
 };

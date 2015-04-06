@@ -28,7 +28,7 @@ main(int argc, char *argv[]) {
 	objects.push_back(dynamic_cast<Object*>(&sphere));
 
 	auto lights = std::vector<Light*>();
-	Light light(Vec(-7, 10, -10), Palette::mattWhite);
+	Light light(Vec(-7, 10, -10), Palette::lightWhite, 1);
 	lights.push_back(&light);
 	
 	Screen screen(640, 480, Settings::pxScale);
@@ -37,7 +37,7 @@ main(int argc, char *argv[]) {
 	Scene scene(screen, camera, objects, lights);
 
 	scene.render();
-	
+	screen.normalize();
 	std::cout << Term::IBlue << "Done!" << Term::Reset << std::endl;
 
 	// TODO: this should be changed to handle incorrect paths

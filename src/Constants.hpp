@@ -17,6 +17,8 @@ namespace Palette {
 	
 	const extern Color limeGreen;
 	const extern Color maroon;
+
+	const extern Color lightWhite;
 }
 
 namespace aliases {

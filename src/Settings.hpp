@@ -20,7 +20,7 @@ namespace Settings {
 	const extern Vec camPos;
 	const extern Vec camLookAt;
 
-	const extern Light light;
+	const extern double ambient;
 
 	// just for saving the image
 	const extern uint32_t dpi;
@@ -28,4 +28,5 @@ namespace Settings {
 	const extern Color background;
 
 	const extern unsigned minimumThreads;
+	const extern uint     recursionDepth;
 }

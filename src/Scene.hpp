@@ -30,5 +30,5 @@ public:
 
 	void render();
 
-	Color raycast(const Ray& ray) const;
+	Color raycast(const Ray& ray, const Object*, uint depth) const;
 };

@@ -42,7 +42,7 @@ Sphere::intersectWith(const Ray& ray) const{
 
 Vec
 Sphere::normalAt(const Vec& point) const {
-	return normalize(point - center);
+	return normalize(center - point);
 }
 
 
