@@ -23,9 +23,9 @@ public:
 	Screen screen;
 	
 	std::vector<Object*> objects;
-	Light light;
+	std::vector<Light*>  lights;
 	
-	Scene(uint32_t height, uint32_t width, std::vector<Object*> objects);
+	Scene(Screen& screen, Cam& camera, std::vector<Object*>& objects, std::vector<Light*>& lights);
 	~Scene();
 
 	void render();

@@ -15,17 +15,25 @@ main(int argc, char *argv[]) {
 	} else {
 		std::cout << Term::Cyan << "Will use the default path " << Term::Yellow << "\"" << path << "\" " << Term::Reset << std::endl;
 	}
+	std::cout << Term::Cyan << "Rendering... " << Term::Reset;
 
 	// build the scene before passing it to the scene object for rendering
 	
 	auto objects = std::vector<Object*>();
-	Plane ground = Plane(World::y, -2, Palette::maroon);
+	Plane ground (World::y, -2, Palette::maroon);
     objects.push_back(dynamic_cast<Object*>(&ground));
 
-	Sphere sphere = Sphere(World::origin, 1, Palette::limeGreen);
+	Sphere sphere (World::origin, 1, Palette::limeGreen);
 	objects.push_back(dynamic_cast<Object*>(&sphere));
 
-	Scene scene(640, 480, objects);
+	auto lights = std::vector<Light*>();
+	Light light(Vec(-7, 10, -10), Palette::mattWhite);
+	lights.push_back(&light);
+	
+	Screen screen(640, 480, Settings::pxScale);
+	Cam camera(Settings::camPos, Settings::camLookAt);
+
+	Scene scene(screen, camera, objects, lights);
 
 	scene.render();
 	

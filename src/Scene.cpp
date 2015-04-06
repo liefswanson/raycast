@@ -1,12 +1,12 @@
 #include "Scene.hpp"
 
-Scene::Scene(uint32_t height, uint32_t width, std::vector<Object*> objects){
-	this->camera  = Cam   (Settings::camPos, Settings::camLookAt);
+Scene::Scene(Screen& screen, Cam& camera, std::vector<Object*>& objects, std::vector<Light*>& lights){
+	this->camera  = camera;
 
-	this->screen  = Screen(height, width, Settings::pxScale);
+	this->screen  = screen;
 
 	this->objects = objects;
-	this->light   = Settings::light;
+	this->lights  = lights;
 }
 
 Scene::~Scene(){}
