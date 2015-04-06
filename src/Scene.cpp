@@ -34,7 +34,6 @@ Scene::render() {
 	}
 }
 
-
 Color
 Scene::raycast(const Ray& ray) const {
 	

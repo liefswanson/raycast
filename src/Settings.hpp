@@ -26,4 +26,6 @@ namespace Settings {
 	const extern uint32_t dpi;
 
 	const extern Color background;
+
+	const extern unsigned minimumThreads;
 }

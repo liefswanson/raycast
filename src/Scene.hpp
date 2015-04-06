@@ -1,5 +1,7 @@
 #pragma once
 
+#include <thread>
+#include <utility>
 #include <vector>
 #include <iostream>
 
@@ -14,6 +16,8 @@
 #include "Settings.hpp"
 
 class Scene {
+private:
+
 public:
 	Cam    camera;
 	Screen screen;
@@ -25,5 +29,6 @@ public:
 	~Scene();
 
 	void render();
+
 	Color raycast(const Ray& ray) const;
 };
