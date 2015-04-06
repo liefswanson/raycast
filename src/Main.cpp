@@ -157,14 +157,13 @@ main(int argc, char *argv[]) {
 	// build the scene before passing it to the scene object for rendering
 	
 	auto objects = std::vector<Object*>();
-	// Plane ground (World::y, -2, Palette::maroon);
 	CheckerBoard ground(World::x, World::z, -2, Palette::muddyRed, Palette::mattWhite, 1);
 	if (chessBoard) objects.push_back(dynamic_cast<Object*>(&ground));
 
 	Sphere defred  (Settings::camLookAt
 					- 1.5 * World::x
 					- 0.5 * World::y,
-					1, Palette::muddyRed);
+					1, Palette::crimson);
 	Sphere defblue (Settings::camLookAt
 					+ 0.5 * World::x
 					- 1.2 * World::z
@@ -182,7 +181,7 @@ main(int argc, char *argv[]) {
 	}
 
 	auto lights = std::vector<Light*>();
-	Light light(Vec(-7, 20, 0), Palette::lightWhite, 1);
+	Light light(Vec(-7, 20, -1), Palette::mattWhite, 1);
 	lights.push_back(&light);
 	
 	Screen screen(512, 512, Settings::pxScale);

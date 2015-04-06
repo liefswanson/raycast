@@ -17,6 +17,7 @@ namespace Palette {
 	
 	const extern Color limeGreen;
 	const extern Color muddyRed;
+	const extern Color crimson;
 	const extern Color paleBlue;
 
 	const extern Color lightWhite;

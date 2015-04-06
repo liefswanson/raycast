@@ -21,6 +21,7 @@ namespace Settings {
 	const extern Vec camLookAt;
 
 	const extern double ambient;
+	const extern double specularMax;
 
 	// just for saving the image
 	const extern uint32_t dpi;
