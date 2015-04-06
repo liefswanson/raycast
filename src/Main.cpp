@@ -21,14 +21,14 @@ main(int argc, char *argv[]) {
 	
 	auto objects = std::vector<Object*>();
 	// Plane ground (World::y, -2, Palette::maroon);
-	CheckerBoard ground(World::x, World::z, -2, Palette::mattWhite, Palette::mattBlack, 1);
+	CheckerBoard ground(-World::x, World::z, 2, Palette::mattWhite, Palette::mattBlack, 1);
 	objects.push_back(dynamic_cast<Object*>(&ground));
 
-	Sphere sphere (World::origin, 1, Palette::limeGreen);
+	Sphere sphere (Settings::camLookAt, 1, Palette::limeGreen);
 	objects.push_back(dynamic_cast<Object*>(&sphere));
 
 	auto lights = std::vector<Light*>();
-	Light light(Vec(-7, 10, -10), Palette::lightWhite, 1);
+	Light light(Vec(7, 10, -10), Palette::lightWhite, 1);
 	lights.push_back(&light);
 	
 	Screen screen(640, 480, Settings::pxScale);
@@ -37,7 +37,7 @@ main(int argc, char *argv[]) {
 	Scene scene(screen, camera, objects, lights);
 
 	scene.render();
-	screen.normalize();
+	scene.screen.normalize();
 	std::cout << Term::IBlue << "Done!" << Term::Reset << std::endl;
 
 	// TODO: this should be changed to handle incorrect paths

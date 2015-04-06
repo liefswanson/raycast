@@ -63,9 +63,9 @@ Scene::raycast(const Ray& ray, const Object* ingnore, uint depth) const {
 		double factor  = -dot(direction, norm) * lights[0]->intensity;
 		// if(factor < 0) std::cout << norm << " " << direction << std::endl;
 		
-		// if (factor < 0) return Palette::mattBlack;
+		if (factor < 0) return objcol * Settings::ambient;
 
-		return  objcol * factor;
+		return  objcol * Settings::ambient + objcol * factor;
 
 	} else {
 		return Settings::background;
