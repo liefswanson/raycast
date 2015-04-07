@@ -15,6 +15,8 @@
 namespace Settings {
 	// used to determine the size of the screen in the world
 	// smaller px size means the rays are grouped closer together
+	const extern uint32_t height;
+	const extern uint32_t width;
 	const extern double pxScale;
 
 	const extern Vec camPos;

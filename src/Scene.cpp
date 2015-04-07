@@ -12,7 +12,7 @@ Scene::Scene(Screen& screen, Cam& camera, std::vector<Object*>& objects, std::ve
 	this->objects = objects;
 	this->lights  = lights;
 
-	this->depth = depth;
+	this->depth = depth + 1;
 
 	this->shadows = shadows;
 	this->reflections = reflections;
@@ -79,19 +79,23 @@ Scene::raycast(const Ray& ray, const Object* ignore, uint depth) const {
 
 	auto closest = collision.first;
 	auto dist    = collision.second;
+
 	
-	// don't need to do any reflection here, we didn't hit anything
+	// don't need to continue, we didn't hit anything
 	if (dist == Ray::miss) return Settings::background;
+
+	auto point     = ray.origin + ray.direction * dist;
+	auto objcol    = closest->colorAt(point);
+	
+	auto normal    = closest->normalAt(point); 
 
 	// TODO this should be the color of the refraction ray
 	Color color = Color(0, 0, 0, 0, 0);
+	if(closest->color.transparency < 1 && depth > 0) {
+		
+	}
 	
 	for (auto light: lights) {
-		auto point     = ray.origin + ray.direction * dist;
-
-		auto objcol    = closest->colorAt(point);
-
-		auto normal    = closest->normalAt(point); 
 		auto direction = normalize(light->position - point);
 
 		double diffuse  = dot(direction, normal);
@@ -107,6 +111,13 @@ Scene::raycast(const Ray& ray, const Object* ignore, uint depth) const {
 
 		if (diffuse < 0 || shadowStatus != Ray::miss) {
 
+			if (depth > 0 && objcol.reflectivity > 0) {
+				auto reflection = normalize(normal - ray.direction); 
+				color = color +
+					objcol.reflectivity * Settings::ambient
+					* raycast(Ray(point, point + reflection), closest, depth);
+			}
+			
 			color = color + Settings::ambient * objcol;
 			
 		} else {

@@ -12,8 +12,12 @@ namespace World {
 }
 
 namespace Palette {
-	const extern Color mattBlack;
-	const extern Color mattWhite;
+	const extern Color matteBlack;
+	const extern Color matteWhite;
+	const extern Color mattePurple;
+
+	const extern Color black;
+	const extern Color white;
 	
 	const extern Color limeGreen;
 	const extern Color muddyRed;

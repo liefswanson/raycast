@@ -1,7 +1,7 @@
 #include "Object.hpp"
 
 Object::Object(){
-	this->color = Palette::mattBlack;
+	this->color = Color();
 }
 
 Object::~Object(){};

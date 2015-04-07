@@ -41,7 +41,7 @@ main(int argc, char *argv[]) {
 	
 
 	// ------------------------------------------------------------------------------------------
-	// [-u | -d] < recursion_depth > FIXME
+	// [-u | -d] < recursion_depth > DONE
 	// ------------------------------------------------------------------------------------------
 
 	userScene = parser.isSet("-u");
@@ -53,9 +53,10 @@ main(int argc, char *argv[]) {
 	}
 
 	if (userScene) {
-		std::cout <<  Term::Cyan << "Will construct the" << Term::Yellow << " user Scene " << std::endl;
+		std::cout <<  Term::Cyan << "User scene is" << Term::IPurple << " not implemented" << Term::Reset << std::endl;
+		return 1;
 	} else if (defaultScene) {
-		std::cout << Term::Cyan << "Will construct the" << Term::Yellow << " default Scene " << std::endl;
+		std::cout << Term::Cyan << "Will construct the" << Term::Yellow << " default Scene " << Term::Reset << std::endl;
 	} else {
 		std::cout << Term::IRed << "neither the of the [-d | -u] flags were set"
 				  << Term::Reset << std::endl;
@@ -157,36 +158,28 @@ main(int argc, char *argv[]) {
 	// build the scene before passing it to the scene object for rendering
 	
 	auto objects = std::vector<Object*>();
-	CheckerBoard ground(World::x, World::z, -2, Palette::muddyRed, Palette::mattWhite, 1);
+	CheckerBoard ground(World::x, World::z, -2, Palette::black, Palette::white, 1);
 	if (chessBoard) objects.push_back(dynamic_cast<Object*>(&ground));
 
-	Sphere defred  (Settings::camLookAt
-					- 1.5 * World::x
-					- 0.5 * World::y,
+	Sphere defred  (Settings::camLookAt + Vec(-1.5, -0.5, 0),
 					1, Palette::crimson);
-	Sphere defblue (Settings::camLookAt
-					+ 0.5 * World::x
-					- 0.95 * World::z
-					- 0.6 * World::y,
-					0.9, Palette::paleBlue);
-	Sphere defgreen(Settings::camLookAt
-					- 0.8 * World::x
-					- 0.5 * World::z
-					+ 1.2 * World::y,
+	Sphere defblue (Settings::camLookAt + Vec(0.5, -0.6, -0.95),
+					0.8, Palette::paleBlue);
+	Sphere defgreen(Settings::camLookAt + Vec(-0.8, 1.2, -0.5),
 					0.65, Palette::limeGreen);
 	if (defaultScene) {
-		objects.push_back(dynamic_cast<Object*>(&defred));	
+		objects.push_back(dynamic_cast<Object*>(&defred));
 		objects.push_back(dynamic_cast<Object*>(&defgreen));
 		objects.push_back(dynamic_cast<Object*>(&defblue));
 	}
 
 	auto lights = std::vector<Light*>();
-	Light light(Settings::camPos + Vec(-12, 20, -1), Palette::mattWhite, 1);
-	Light light2(Settings::camPos + Vec(12, -1, 1), Palette::mattWhite, 0.25);
+	Light light(Settings::camPos + Vec(-12, 20, -1), Palette::matteWhite, 1);
+	// Light light2(Settings::camPos + Vec(12, -1, 1), Palette::matteWhite, 0.25);
 	lights.push_back(&light);
 	// lights.push_back(&light2);
 
-	Screen screen(512, 512, Settings::pxScale);
+	Screen screen(Settings::width, Settings::height, Settings::pxScale);
 	Cam camera(Settings::camPos, Settings::camLookAt);
 
 	Scene scene(screen, camera, objects, lights,

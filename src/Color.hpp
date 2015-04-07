@@ -9,6 +9,7 @@ public:
 	double b;
 	double reflectivity;
 	double transparency;
+	double refractionIndex;
 
 	Color(double r, double g, double b,
 		  double reflectivity = 0, double refractivity = 0);

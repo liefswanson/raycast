@@ -10,6 +10,8 @@ bin:
 
 run: bin
 	src/bin/$(bin) $(bin_args)
+	convert out/output.bmp out/output.png
+	rm out/output.bmp
 
 run-save: bin
 	src/bin/$(bin) $(bin_args) -p out/$(shell date +%s).bmp
