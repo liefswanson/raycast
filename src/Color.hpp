@@ -12,7 +12,10 @@ public:
 	double refractionIndex;
 
 	Color(double r, double g, double b,
-		  double reflectivity = 0, double refractivity = 0);
+		  double reflectivity = 0,
+		  double refractivity = 0,
+		  double refractionIndex = 1);
+	
 	Color();
 	~Color();
 

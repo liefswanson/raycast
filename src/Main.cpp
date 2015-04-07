@@ -153,7 +153,7 @@ main(int argc, char *argv[]) {
 				  << Term::Yellow << "\"" << Settings::defaultPath << "\" " << Term::Reset << std::endl;
 	}
 
-	std::cout << Term::Cyan << "Rendering... " << Term::Reset;
+	std::cout << Term::Cyan << "Rendering... " << Term::Reset << std::endl;
 
 	// build the scene before passing it to the scene object for rendering
 	

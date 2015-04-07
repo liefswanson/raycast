@@ -91,9 +91,7 @@ Scene::raycast(const Ray& ray, const Object* ignore, uint depth) const {
 
 	// TODO this should be the color of the refraction ray
 	Color color = Color(0, 0, 0, 0, 0);
-	if(closest->color.transparency < 1 && depth > 0) {
-		
-	}
+
 	
 	for (auto light: lights) {
 		auto direction = normalize(light->position - point);
@@ -121,11 +119,15 @@ Scene::raycast(const Ray& ray, const Object* ignore, uint depth) const {
 			color = color + Settings::ambient * objcol;
 			
 		} else {
-			if (depth > 0) {
+			if (objcol.reflectivity > 0 && depth > 0) {
 				auto reflection = normalize(normal - ray.direction); 
 				color = color +
 					objcol.reflectivity
 					* raycast(Ray(point, point + reflection), closest, depth);
+			}
+
+			if(objcol.transparency > 0 && depth > 0) {
+				
 			}
 			
 			color = color +
