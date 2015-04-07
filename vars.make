@@ -1,4 +1,4 @@
-cc       = clang++
+cc       = g++
 std      = --std=c++14
 flags    = -g -Wall
 lflags   = -g -Wall
@@ -7,7 +7,3 @@ src      = Main.cpp Constants.cpp Settings.cpp ImageWrite.cpp ArgParse.cpp TermC
 obj      = $(src:.cpp=.o)
 bin      = raycast.bin
 bin_args = -d 5 +s +l +r +c +f +p
-
-test_src = 
-test_obj = $(test_src:.cpp=.o)
-test_bin = 

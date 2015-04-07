@@ -1,0 +1,56 @@
+Lief Swanson
+liefs@sfu.ca
+
+PEOPLE I TALKED TO ABOUT THIS ASSIGNMENT:
+connor bartol
+colin woodbury
+people outside this class who don't program, but had suggestions and critisisms about art related components of my assignment
+
+This project does not render to a screen it only outputs an image.
+
+it follows all the required flag specifications in the assignment3.pdf
+
+in order to make the assignment run "make" from the top level directory.
+
+to automatically run the program through make with all flags enabled run "make run" from the top level directory
+this will output a file called "output.bmp" to the "out/" directory.
+
+to run the program and automatically save output to something other than "out/output.bmp" run "make run-save" and the image will be saved with the epoch time, thus it will never be accidentally overwritten. (ie it will save to "out/1428384254.bmp")
+
+two parts of the raytracer were not completed; neither the refractions or stochastic diffusion are implemented.
+
+there is also no -u flag as i did not implement the bonus.
+
+in order to run the program with a custom flag combinations you will have to run ./src/bin/raycast -d <recursion depth> {other flags}.
+
+
+ATTENTION:
+if you want to edit the scene, to prove that I have not faked the rendering, contact me for instructions.
+Basically it involves adding spheres and planes and pushing them into the objects std::vector which gets handed off to the scene
+
+known bugs:
+- I do not have exactly the same scene as the one in the pdf as my project does not make use of the sample code
+- I can not make use of multiple lights (I was really close)
+- I don't render anything to an opengl window (however, the project description says nothing about me needing to do.)
+- Not everything was implemented, the way it was suggested to avoid a certain probem in class (self reflectance) was to ignore the object, but this made refraction essentially not possible, there was not enough time to refactor in order to do it
+
+awesome features:
+- All the colors are defined in the "Settings.cpp/hpp" and "Constants.cpp/hpp" if you are so inclined you may change them to whatever you may like, just keep in mind all colors and color attributes should be between 0 to 1
+- I don't use any of the sample code
+- most of my code is actually somewhat readable! (this is a vast improvement over most of the ray tracer code i have seen on various forums in the process of doing all of this)
+- my code should also compile and run on windows/mac without changing a thing! (as long as you have gnu-make and g++/clang++)
+- the commandline is actually helpful in it's output (though there is more i would have added to it) and it is colorful
+
+If I had more time I would:
+- refactor my code so that material attributes and colors were separate
+- implement an accelerated data-structure
+- change the self-reflection avoidance so that I can do refraction
+- Fix the in ability to use multiple lights
+- render to opengl throught a legacy pixel buffer
+- multithread rendering by taking every pixel which had index%number_of_cores = core_number run on that particular core thus linearly increasing render speed
+- render to a different file format(png), as uncompressed bmps slow things down when trying to io
+- add other primitaves to my possible renderable objects (most notably triangles)
+- change the recursion conditions to stop the recursion of low influenc rays sooner
+- change the way i do color mixing to result in better mixing
+- added more customization through the commandline
+... in that order

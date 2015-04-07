@@ -1,7 +1,7 @@
 #include "Settings.hpp"
 
-const uint32_t Settings::width          = 1920;
-const uint32_t Settings::height         = 1080;
+const uint32_t Settings::width          = 512;
+const uint32_t Settings::height         = 512;
 const uint32_t Settings::dpi            = 72;
 const double   Settings::pxScale        = 0.01;
 const Vec      Settings::camPos         = Vec(100, 0, 100);
