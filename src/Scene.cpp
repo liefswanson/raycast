@@ -111,8 +111,12 @@ Scene::raycast(const Ray& ray, const Object* ignore, uint depth) const {
 			
 		} else {
 			if (depth > 0) {
-				color = color + objcol.reflectivity *raycast(Ray(point, point + normal), closest, depth);
+				auto reflection = normalize(normal - ray.direction); 
+				color = color +
+					objcol.reflectivity
+					* raycast(Ray(point, point + reflection), closest, depth);
 			}
+			
 			color = color +
 				Settings::ambient
 				* objcol
