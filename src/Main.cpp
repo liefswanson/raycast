@@ -41,7 +41,7 @@ main(int argc, char *argv[]) {
 	
 
 	// ------------------------------------------------------------------------------------------
-	// [-u | -d] < recursion_depth > TODO
+	// [-u | -d] < recursion_depth > FIXME
 	// ------------------------------------------------------------------------------------------
 
 	userScene = parser.isSet("-u");
@@ -126,7 +126,7 @@ main(int argc, char *argv[]) {
 	// ------------------------------------------------------------------------------------------
 
 	superSample = parser.isSet("+p");
-	argStatus("Super sample", superSample);
+	argStatus("Super sampling", superSample);
 
 	// ------------------------------------------------------------------------------------------
 	// -p DONE
@@ -189,9 +189,12 @@ main(int argc, char *argv[]) {
 	Screen screen(512, 512, Settings::pxScale);
 	Cam camera(Settings::camPos, Settings::camLookAt);
 
-	Scene scene(screen, camera, objects, lights);
+	Scene scene(screen, camera, objects, lights,
+				depth,
+				shadows, reflections, refractions,
+				stochasticDiffuse, superSample);
 
-	scene.render(superSample, depth);
+	scene.render();
 	scene.screen.normalize();
 	std::cout << Term::IBlue << "Done!" << Term::Reset << std::endl;
 

@@ -1,18 +1,30 @@
 #include "Scene.hpp"
 
-Scene::Scene(Screen& screen, Cam& camera, std::vector<Object*>& objects, std::vector<Light*>& lights){
+Scene::Scene(Screen& screen, Cam& camera, std::vector<Object*>& objects, std::vector<Light*>& lights,
+			 uint depth,
+			 bool shadows, bool reflections, bool refractions,
+			 bool stochasticDiffuse, bool superSample){
+	
 	this->camera  = camera;
 
 	this->screen  = screen;
 
 	this->objects = objects;
 	this->lights  = lights;
+
+	this->depth = depth;
+
+	this->shadows = shadows;
+	this->reflections = reflections;
+	this->refractions = refractions;
+	this->stochasticDiffuse = stochasticDiffuse;
+	this->superSample = superSample;
 }
 
 Scene::~Scene(){}
 
 void
-Scene::render(bool superSample, uint depth) {
+Scene::render() {
 	// offsets the screen center to the topleft pixel for use of iterating through
 	Vec topLeft = camera.lookAt
 		+ 0.5 * screen.width  * screen.pxScale * camera.left
@@ -37,45 +49,38 @@ Scene::render(bool superSample, uint depth) {
 			if (superSample) {
 				screen.at(x, y)
 					= raycast(Ray(camera.position, pxPosition),
-							  NULL, depth)
+										  NULL, depth)
 					
 					+ raycast(Ray(camera.position, pxPosition + leftAdjust  + upAdjust),
-							  NULL, depth)
+										  NULL, depth)
 
 					+ raycast(Ray(camera.position, pxPosition + rightAdjust + upAdjust),
-							  NULL, depth)
+										  NULL, depth)
 
 					+ raycast(Ray(camera.position, pxPosition + leftAdjust  + downAdjust),
-							  NULL, depth)
+										  NULL, depth)
 
 					+ raycast(Ray(camera.position, pxPosition + rightAdjust + downAdjust),
-							  NULL, depth);	
+										  NULL, depth);	
 			} else {
 				screen.at(x, y)
 					= raycast(Ray(camera.position, pxPosition),
-							  NULL, depth);
+										  NULL, depth);
 			}
 		}
 	}
 }
 
 Color
-Scene::raycast(const Ray& ray, const Object* ingnore, uint depth) const {
+Scene::raycast(const Ray& ray, const Object* ignore, uint depth) const {
+
+	auto collision = raycollide(ray, ignore); 
+
+	auto closest = collision.first;
+	auto dist = collision.second;
 	
-	const Object* closest = NULL;
-	double dist = aliases::inf;
-
-	for (auto obj : objects) {
-		auto temp = obj->intersectWith(ray);
-		if (temp <  dist &&
-			temp != Ray::miss) {
-			dist    = temp;
-			closest = obj;
-		}
-	}
-
 	// don't need to do any reflection here, we didn't hit anything
-	if (dist == Ray::miss || dist == aliases::inf) return Settings::background;
+	if (dist == Ray::miss) return Settings::background;
 
 	// TODO this should be the color of the refraction ray
 	Color color = Color(0, 0, 0, 0, 0);
@@ -90,13 +95,23 @@ Scene::raycast(const Ray& ray, const Object* ingnore, uint depth) const {
 
 		double diffuse  = dot(direction, norm);
 		double specular = pow(diffuse, objcol.reflectivity * Settings::specularMax);
-		
-		if (diffuse < 0) {
-			color = color +  Settings::ambient * (1 - objcol.transparency) * objcol;	
+
+		double shadowStatus; 
+		if(shadows) {
+			auto temp = raycollide(Ray(point, light->position), closest);
+			shadowStatus = temp.second;
+		} else {
+			shadowStatus = Ray::miss;
+		}
+
+		if (diffuse < 0 || shadowStatus != Ray::miss) {
+
+			color = color + Settings::ambient * objcol;
+			
 		} else {
 			color = color +
 				Settings::ambient
-				* (1 - objcol.transparency) * objcol
+				* objcol
 
 				+ diffuse
 				* (1 - objcol.reflectivity) * objcol * light->intensity 
@@ -104,7 +119,27 @@ Scene::raycast(const Ray& ray, const Object* ingnore, uint depth) const {
 				+ specular
 				* objcol.reflectivity       * objcol * light->intensity;
 		}
-		
 	}
 	return color;
+}
+
+std::pair<const Object*, double>
+Scene::raycollide(const Ray& ray, const Object* ignore) const{
+
+	const Object* closest = NULL;
+	double dist = aliases::inf;
+
+	for (auto obj : objects) {
+		if (obj != ignore) {
+			auto temp = obj->intersectWith(ray);
+			if (temp <  dist &&
+				temp != Ray::miss) {
+				dist    = temp;
+				closest = obj;
+			}	
+		}
+	}
+	if (dist == aliases::inf) dist = Ray::miss;
+	
+	return std::make_pair(closest, dist);
 }
