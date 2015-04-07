@@ -94,11 +94,11 @@ main(int argc, char *argv[]) {
 	argStatus("shadows", shadows);
 	
 	// ------------------------------------------------------------------------------------------
-	// +l TODO
+	// +l DONE may also have a problem with more than one light
 	// ------------------------------------------------------------------------------------------
 
 	reflections = parser.isSet("+l");
-	notImplemented("reflection");
+	argStatus("reflection", reflections);
 
 	// ------------------------------------------------------------------------------------------
 	// +r TODO
@@ -182,7 +182,7 @@ main(int argc, char *argv[]) {
 
 	auto lights = std::vector<Light*>();
 	Light light(Settings::camPos + Vec(-12, 20, -1), Palette::mattWhite, 1);
-	Light light2(Vec(7, -1, -12), Palette::mattWhite, 0.25);
+	Light light2(Settings::camPos + Vec(12, -1, 1), Palette::mattWhite, 0.25);
 	lights.push_back(&light);
 	// lights.push_back(&light2);
 
