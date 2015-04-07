@@ -2,8 +2,8 @@
 
 const uint32_t Settings::dpi            = 72;
 const double   Settings::pxScale        = 0.01;
-const Vec      Settings::camPos         = Vec(5, 0, 0);
-const Vec      Settings::camLookAt      = Vec(10, 0, 4);
+const Vec      Settings::camPos         = Vec(100, 0, 100);
+const Vec      Settings::camLookAt      = camPos + Vec(5, 0, 4);
 
 const double   Settings::ambient       = 0.05;
 const double   Settings::specularMax   = 50;
