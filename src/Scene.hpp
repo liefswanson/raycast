@@ -15,12 +15,6 @@
 #include "Ray.hpp"
 #include "Settings.hpp"
 
-enum rayReturns {
-	OBJ,
-	DIST,
-	COLOR
-};
-
 class Scene {
 private:
 

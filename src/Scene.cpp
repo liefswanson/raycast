@@ -73,11 +73,12 @@ Scene::render() {
 
 Color
 Scene::raycast(const Ray& ray, const Object* ignore, uint depth) const {
+	depth--;
 
 	auto collision = raycollide(ray, ignore); 
 
 	auto closest = collision.first;
-	auto dist = collision.second;
+	auto dist    = collision.second;
 	
 	// don't need to do any reflection here, we didn't hit anything
 	if (dist == Ray::miss) return Settings::background;
@@ -90,10 +91,10 @@ Scene::raycast(const Ray& ray, const Object* ignore, uint depth) const {
 
 		auto objcol    = closest->colorAt(point);
 
-		auto norm      = closest->normalAt(point); 
+		auto normal    = closest->normalAt(point); 
 		auto direction = normalize(light->position - point);
 
-		double diffuse  = dot(direction, norm);
+		double diffuse  = dot(direction, normal);
 		double specular = pow(diffuse, objcol.reflectivity * Settings::specularMax);
 
 		double shadowStatus; 
@@ -109,6 +110,9 @@ Scene::raycast(const Ray& ray, const Object* ignore, uint depth) const {
 			color = color + Settings::ambient * objcol;
 			
 		} else {
+			if (depth > 0) {
+				color = color + objcol.reflectivity *raycast(Ray(point, point + normal), closest, depth);
+			}
 			color = color +
 				Settings::ambient
 				* objcol
