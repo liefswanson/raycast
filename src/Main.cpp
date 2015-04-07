@@ -87,11 +87,11 @@ main(int argc, char *argv[]) {
 	}
 
 	// ------------------------------------------------------------------------------------------
-	// +s TODO
+	// +s FIXME does not work with more than one light
 	// ------------------------------------------------------------------------------------------
 
 	shadows = parser.isSet("+s");
-	notImplemented("shadows");
+	argStatus("shadows", shadows);
 	
 	// ------------------------------------------------------------------------------------------
 	// +l TODO
@@ -166,7 +166,7 @@ main(int argc, char *argv[]) {
 					1, Palette::crimson);
 	Sphere defblue (Settings::camLookAt
 					+ 0.5 * World::x
-					- 1.2 * World::z
+					- 0.95 * World::z
 					- 0.6 * World::y,
 					0.9, Palette::paleBlue);
 	Sphere defgreen(Settings::camLookAt
@@ -183,8 +183,8 @@ main(int argc, char *argv[]) {
 	auto lights = std::vector<Light*>();
 	Light light(Vec(-7, 20, -1), Palette::mattWhite, 1);
 	Light light2(Vec(7, -1, -12), Palette::mattWhite, 0.25);
-	lights.push_back(&light2);
 	lights.push_back(&light);
+	// lights.push_back(&light2);
 
 	Screen screen(512, 512, Settings::pxScale);
 	Cam camera(Settings::camPos, Settings::camLookAt);
